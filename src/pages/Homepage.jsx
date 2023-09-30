@@ -5,6 +5,7 @@ import { BsArrowRightShort } from "react-icons/bs";
 import Banner from "src/assets/Images/banner.mp4";
 import HighlightText from "src/components/core/Home/HighlightText";
 import CodeBlock from "src/components/core/Home/CodeBlock";
+import Footer from "src/components/common/Footer";
 
 const Homepage = () => {
   return (
@@ -13,8 +14,8 @@ const Homepage = () => {
       <div className="font-inter max-h-fit text-richblack-200 flex justify-center items-center">
         <Link>
           <div
-            className="flex py-2 px-4 rounded-3xl mx-2   shadow-richblack-100 font-bold shadow-sm transition-all 
-          text-base
+            className="flex py-3 px-5 rounded-3xl mx-2   shadow-richblack-100 font-bold shadow-sm transition-all 
+          text-xl
           hover:scale-105 duration-300 justify-center items-center gap-1 bg-richblack-800"
           >
             <div className="flex">Become an Instructor</div>
@@ -27,10 +28,10 @@ const Homepage = () => {
 
       {/* Heading + Para + 2Buttons */}
       <div className="mt-10  mx-auto flex w-7/12 text-center flex-col items-center text-white">
-        <div className="font-bold text-4xl text-white">
+        <div className="font-bold text-4xl font-mono text-white">
           Empower Your Future with <HighlightText>Coding Skills</HighlightText>
         </div>
-        <div className="text-richblack-300 font-semibold mt-4 ">
+        <div className="text-richblack-300 font-inter font-semibold mt-4 ">
           With our online coding courses, you can learn at your own pace, from
           anywhere in the world, and get access to a wealth of resources,
           including hands-on projects, quizzes, and personalized feedback from
@@ -83,7 +84,7 @@ const Homepage = () => {
         para="Our courses are designed and taught by industry experts who have years of experience in coding and are passionate about sharing their
         knowledge with you."
         flexDirection=""
-        key={1}
+        key={0}
         ctaBtn1={{
           text: "Try it Yourself",
           icon: <BsArrowRightShort />,
@@ -144,6 +145,8 @@ const Homepage = () => {
           textColor: "text-white",
         }}
       />
+      <div className="my-12"></div>
+      <Footer />
     </div>
   );
 };

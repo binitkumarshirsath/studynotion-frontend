@@ -91,7 +91,7 @@ CodeBlock.propTypes = {
     linkTo: PropTypes.string,
     textColor: PropTypes.string,
     shadowColor: PropTypes.string,
-    icon: PropTypes.element,
+    icon: PropTypes.element || PropTypes.string,
   }),
 
   ctaBtn2: PropTypes.shape({
@@ -100,7 +100,7 @@ CodeBlock.propTypes = {
     linkTo: PropTypes.string,
     textColor: PropTypes.string,
     shadowColor: PropTypes.string,
-    icon: PropTypes.element,
+    icon: PropTypes.string || PropTypes.string,
   }),
 };
 
