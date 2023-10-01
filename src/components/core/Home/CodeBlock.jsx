@@ -14,8 +14,9 @@ const CodeBlock = ({
   return (
     <>
       <div
-        className={`mt-24 flex  justify-center  w-9/12 ${flexDirection}  gap-20`}
+        className={`mt-24 flex  justify-center  w-10/12 ${flexDirection}  gap-32  `}
       >
+        {/* written part and btns */}
         <div className="w-4/6">
           <div className="text-white text-3xl font-bold font-mono">
             {heading}
@@ -42,8 +43,9 @@ const CodeBlock = ({
             />
           </div>
         </div>
+        {/* typeanimation code */}
         <div
-          className={`w-3/6 ml-16 border rounded-md  border-richblack-300  p-2 flex `}
+          className={`w-5/6  border rounded-sm  border-richblack-500 bg-gra  p-2 flex `}
         >
           <div className="w-[4%] mx-4  text-richblack-200 font-semibold">
             <p>1</p>

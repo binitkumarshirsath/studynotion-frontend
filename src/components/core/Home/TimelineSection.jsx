@@ -98,7 +98,7 @@ const TimelineSection = () => {
                 className="shadow-lg z-0 shadow-blue-600"
               />
             </div>
-            <div className="bg-caribbeangreen-700 w-10/12 flex justify-evenly items-center bottom-[0] translate-y-10 left-16 h-32 absolute z-10 ">
+            <div className="bg-caribbeangreen-700 w-10/12 flex justify-evenly items-center bottom-[0] translate-y-14 left-16 h-32 absolute z-10 ">
               <div className="flex justify-between gap-6 items-center border-r border-caribbeangreen-400">
                 <div className="font-semibold text-3xl font-inter  text-white">
                   10+

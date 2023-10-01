@@ -8,11 +8,13 @@ import CodeBlock from "src/components/core/Home/CodeBlock";
 import Footer from "src/components/common/Footer";
 import TimelineSection from "src/components/core/Home/TimelineSection";
 import LearningLanguage from "src/components/core/Home/LearningLanguage";
+import InstructorAndReview from "src/components/core/Home/InstructorAndReview";
+import ExploreMore from "src/components/core/Home/ExploreMore";
 
 const Homepage = () => {
   return (
     <>
-      <div className="pt-16 w-full flex bg-richblack-900  flex-col items-center mx-auto ">
+      <div className="pt-16 w-full h-full flex bg-richblack-900  flex-col items-center mx-auto ">
         {/* Button */}
         <div className="font-inter max-h-fit text-richblack-200 flex justify-center items-center">
           <Link>
@@ -60,7 +62,7 @@ const Homepage = () => {
         </div>
 
         {/* Video */}
-        <div className="flex justify-center mt-10">
+        <div className="flex h-full justify-center mt-10">
           <div className="mx-3 my-7 w-10/12 shadow-[10px_-5px_50px_-5px] shadow-blue-500">
             <video
               className="shadow-[20px_20px_rgba(255,255,255)]"
@@ -150,18 +152,11 @@ const Homepage = () => {
           }}
         />
 
-        <div className="my-32 ">
-          <div className="text-4xl font-mono text-richblack-50 font-bold">
-            Unlock the <HighlightText> Power of Code</HighlightText>
-          </div>
-          <div className="text-xl font-semibold text-richblack-100 text-center mt-4">
-            Learn to build anything you can imagine
-          </div>
-        </div>
-
+        {/* explore the power of code  */}
+        <ExploreMore />
         {/* rhombus bg wala div */}
         <div className="bghome ">
-          <div className="flex gap-8 justify-center mt-16 h-80 items-center">
+          <div className="flex gap-8 justify-center mt-28 h-80 items-center">
             <CTAButton
               bgColor="bg-yellow-50"
               icon={<BsArrowRightShort />}
@@ -183,7 +178,7 @@ const Homepage = () => {
       </div>
       <TimelineSection />
       <LearningLanguage />
-      <div className="my-12"></div>
+      <InstructorAndReview />
       <Footer />
     </>
   );
