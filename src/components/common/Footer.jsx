@@ -8,7 +8,7 @@ import FooterHeading from "./FooterHeading";
 
 const Footer = () => {
   return (
-    <footer className="bg-richblack-800  h-screen w-full  ">
+    <footer className="bg-richblack-800  w-full  ">
       <div className="flex justify-center">
         <div className="flex w-10/12 justify-center mt-5 border-b border-richblack-700 ">
           {/* first half */}

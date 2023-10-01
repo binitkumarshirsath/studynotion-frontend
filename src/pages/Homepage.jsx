@@ -6,105 +6,109 @@ import Banner from "src/assets/Images/banner.mp4";
 import HighlightText from "src/components/core/Home/HighlightText";
 import CodeBlock from "src/components/core/Home/CodeBlock";
 import Footer from "src/components/common/Footer";
+import TimelineSection from "src/components/core/Home/TimelineSection";
+import LearningLanguage from "src/components/core/Home/LearningLanguage";
 
 const Homepage = () => {
   return (
-    <div className="mt-16 w-full flex  flex-col items-center mx-auto h-screen">
-      {/* Button */}
-      <div className="font-inter max-h-fit text-richblack-200 flex justify-center items-center">
-        <Link>
-          <div
-            className="flex py-3 px-5 rounded-3xl mx-2   shadow-richblack-100 font-bold shadow-sm transition-all 
+    <>
+      <div className="pt-16 w-full flex bg-richblack-900  flex-col items-center mx-auto ">
+        {/* Button */}
+        <div className="font-inter max-h-fit text-richblack-200 flex justify-center items-center">
+          <Link>
+            <div
+              className="flex py-3 px-5 rounded-3xl mx-2   shadow-richblack-100 font-bold shadow-sm transition-all 
           text-xl
           hover:scale-105 duration-300 justify-center items-center gap-1 bg-richblack-800"
-          >
-            <div className="flex">Become an Instructor</div>
-            <div className="flex">
-              <BsArrowRightShort />
+            >
+              <div className="flex">Become an Instructor</div>
+              <div className="flex">
+                <BsArrowRightShort />
+              </div>
             </div>
+          </Link>
+        </div>
+
+        {/* Heading + Para + 2Buttons */}
+        <div className="mt-10  mx-auto flex w-7/12 text-center flex-col items-center text-white">
+          <div className="font-bold text-4xl font-mono text-white">
+            Empower Your Future with{" "}
+            <HighlightText>Coding Skills</HighlightText>
           </div>
-        </Link>
-      </div>
-
-      {/* Heading + Para + 2Buttons */}
-      <div className="mt-10  mx-auto flex w-7/12 text-center flex-col items-center text-white">
-        <div className="font-bold text-4xl font-mono text-white">
-          Empower Your Future with <HighlightText>Coding Skills</HighlightText>
-        </div>
-        <div className="text-richblack-300 font-inter font-semibold mt-4 ">
-          With our online coding courses, you can learn at your own pace, from
-          anywhere in the world, and get access to a wealth of resources,
-          including hands-on projects, quizzes, and personalized feedback from
-          instructors.{" "}
-        </div>
-        <div className="flex gap-5 mt-4 items-center">
-          <CTAButton
-            text="Learn More"
-            linkTo="/signup"
-            bgColor="bg-yellow-50"
-            shadowColor="shadow-yellow-25"
-            textColor="text-richblack-900"
-          />
-          <CTAButton
-            text="Book a Demo"
-            linkTo="/login"
-            bgColor="bg-richblack-800"
-            shadowColor="shadow-richblack-25"
-            textColor="text-richblack-200"
-          />
-        </div>
-      </div>
-
-      {/* Video */}
-      <div className="flex justify-center mt-10">
-        <div className="mx-3 my-7 w-10/12 shadow-[10px_-5px_50px_-5px] shadow-blue-500">
-          <video
-            className="shadow-[20px_20px_rgba(255,255,255)]"
-            muted
-            loop
-            autoPlay
-          >
-            <source src={Banner} type="video/mp4" />
-          </video>
-        </div>
-      </div>
-
-      {/*  CodeBlock section -> Text and animation*/}
-
-      <CodeBlock
-        content={`<!DOCTYPE html>\n <html lang="en">\n<head>\n<title>Binit loves to code💓</title>\n</head>\n<body>\n<h1><a href="/dsa">DSA🔥</a></h1>\n<nav> <a href="/development">Development👨🏿‍💻</a> <a href="/ML">ML🤖</a> <a href="/happy">smile</a>\n</nav>\n</body>`}
-        codeColor="text-yellow-5"
-        heading={
-          <div>
-            Unlock your
-            <HighlightText> coding potential </HighlightText>
-            with our online courses.
+          <div className="text-richblack-300 font-inter font-semibold mt-4 ">
+            With our online coding courses, you can learn at your own pace, from
+            anywhere in the world, and get access to a wealth of resources,
+            including hands-on projects, quizzes, and personalized feedback from
+            instructors.{" "}
           </div>
-        }
-        para="Our courses are designed and taught by industry experts who have years of experience in coding and are passionate about sharing their
+          <div className="flex gap-5 mt-4 items-center">
+            <CTAButton
+              text="Learn More"
+              linkTo="/signup"
+              bgColor="bg-yellow-50"
+              shadowColor="shadow-yellow-25"
+              textColor="text-richblack-900"
+            />
+            <CTAButton
+              text="Book a Demo"
+              linkTo="/login"
+              bgColor="bg-richblack-800"
+              shadowColor="shadow-richblack-25"
+              textColor="text-richblack-200"
+            />
+          </div>
+        </div>
+
+        {/* Video */}
+        <div className="flex justify-center mt-10">
+          <div className="mx-3 my-7 w-10/12 shadow-[10px_-5px_50px_-5px] shadow-blue-500">
+            <video
+              className="shadow-[20px_20px_rgba(255,255,255)]"
+              muted
+              loop
+              autoPlay
+            >
+              <source src={Banner} type="video/mp4" />
+            </video>
+          </div>
+        </div>
+
+        {/*  CodeBlock section -> Text and animation*/}
+
+        <CodeBlock
+          content={`<!DOCTYPE html>\n <html lang="en">\n<head>\n<title>Binit loves to code💓</title>\n</head>\n<body>\n<h1><a href="/dsa">DSA🔥</a></h1>\n<nav> <a href="/development">Development👨🏿‍💻</a> <a href="/ML">ML🤖</a> <a href="/happy">smile</a>\n</nav>\n</body>`}
+          codeColor="text-yellow-5"
+          heading={
+            <div>
+              Unlock your
+              <HighlightText> coding potential </HighlightText>
+              with our online courses.
+            </div>
+          }
+          para="Our courses are designed and taught by industry experts who have years of experience in coding and are passionate about sharing their
         knowledge with you."
-        flexDirection=""
-        key={0}
-        ctaBtn1={{
-          text: "Try it Yourself",
-          icon: <BsArrowRightShort />,
-          bgColor: "bg-yellow-50",
-          linkTo: "/sighup",
-          shadowColor: "bg-yellow-200",
-          textColor: "text-blackrich-200",
-        }}
-        ctaBtn2={{
-          text: "Learn More",
-          icon: "",
-          bgColor: "bg-richblack-800",
-          linkTo: "/login",
-          shadowColor: "shadow-richblack-25",
-          textColor: "text-white",
-        }}
-      />
+          flexDirection=""
+          key={0}
+          ctaBtn1={{
+            text: "Try it Yourself",
+            icon: <BsArrowRightShort />,
+            bgColor: "bg-yellow-50",
+            linkTo: "/sighup",
+            shadowColor: "bg-yellow-200",
+            textColor: "text-blackrich-200",
+          }}
+          ctaBtn2={{
+            text: "Learn More",
+            icon: "",
+            bgColor: "bg-richblack-800",
+            linkTo: "/login",
+            shadowColor: "shadow-richblack-25",
+            textColor: "text-white",
+          }}
+        />
 
-      <CodeBlock
-        content={`import { Route, Routes } from "react-router-dom";
+        <CodeBlock
+          content={`import { Route, Routes } from "react-router-dom";
         import Homepage from "./pages/Homepage";
         const App = () => {
           return (
@@ -117,37 +121,71 @@ const Homepage = () => {
         };
         
         export default App;`}
-        codeColor="text-blue-25"
-        heading={
-          <div>
-            Start
-            <HighlightText> coding in seconds </HighlightText>
-            with our online courses.
+          codeColor="text-blue-25"
+          heading={
+            <div>
+              Start
+              <HighlightText> coding in seconds </HighlightText>
+              with our online courses.
+            </div>
+          }
+          para="Go ahead, give it a try. Our hands-on learning environment means you'll be writing real code from your very first lesson."
+          flexDirection="flex-row-reverse"
+          key={1}
+          ctaBtn1={{
+            text: "Continue Lesson",
+            icon: <BsArrowRightShort />,
+            bgColor: "bg-yellow-50",
+            linkTo: "/sighup",
+            shadowColor: "bg-yellow-200",
+            textColor: "text-blackrich-200",
+          }}
+          ctaBtn2={{
+            text: "Learn More",
+            icon: "",
+            bgColor: "bg-richblack-800",
+            linkTo: "/login",
+            shadowColor: "shadow-richblack-25",
+            textColor: "text-white",
+          }}
+        />
+
+        <div className="my-32 ">
+          <div className="text-4xl font-mono text-richblack-50 font-bold">
+            Unlock the <HighlightText> Power of Code</HighlightText>
           </div>
-        }
-        para="Go ahead, give it a try. Our hands-on learning environment means you'll be writing real code from your very first lesson."
-        flexDirection="flex-row-reverse"
-        key={1}
-        ctaBtn1={{
-          text: "Continue Lesson",
-          icon: <BsArrowRightShort />,
-          bgColor: "bg-yellow-50",
-          linkTo: "/sighup",
-          shadowColor: "bg-yellow-200",
-          textColor: "text-blackrich-200",
-        }}
-        ctaBtn2={{
-          text: "Learn More",
-          icon: "",
-          bgColor: "bg-richblack-800",
-          linkTo: "/login",
-          shadowColor: "shadow-richblack-25",
-          textColor: "text-white",
-        }}
-      />
+          <div className="text-xl font-semibold text-richblack-100 text-center mt-4">
+            Learn to build anything you can imagine
+          </div>
+        </div>
+
+        {/* rhombus bg wala div */}
+        <div className="bghome ">
+          <div className="flex gap-8 justify-center mt-16 h-80 items-center">
+            <CTAButton
+              bgColor="bg-yellow-50"
+              icon={<BsArrowRightShort />}
+              text="Explore Full Catalogue"
+              key={1}
+              linkTo="/signup"
+              shadowColor="shadow-yellow-200"
+              textColor="text-richblack-800"
+            />
+            <CTAButton
+              text="Learn More"
+              linkTo="/login"
+              bgColor="bg-richblack-800"
+              shadowColor="shadow-richblack-25"
+              textColor="text-richblack-200"
+            />
+          </div>
+        </div>
+      </div>
+      <TimelineSection />
+      <LearningLanguage />
       <div className="my-12"></div>
       <Footer />
-    </div>
+    </>
   );
 };
 
