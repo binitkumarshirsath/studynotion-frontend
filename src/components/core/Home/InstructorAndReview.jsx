@@ -7,22 +7,23 @@ import { BsArrowRightShort } from "react-icons/bs";
 const InstructorAndReview = () => {
   return (
     <div className="bg-richblack-900 w-full h-full">
-      <div className="w-10/12 mx-auto py-16">
-        <div className=" flex justify-between gap-16 items-center">
+      <div className="md:w-10/12 w-10/12 mx-auto py-16">
+        <div className=" md:flex justify-between md:gap-16 items-center">
+          {/* image */}
           <div>
             <img
               src={Instructor}
               alt="instructor"
-              className="object-contain shadow-[-20px_-20px_rgba(255,255,255)]"
+              className="object-contain my-4 shadow-[-20px_-20px_rgba(255,255,255)]"
             />
           </div>
-          <div className="flex flex-col ml-14">
+          <div className="flex flex-col w-full md:ml-14">
             {/* heading */}
-            <div className="font-bold text-4xl mb-10 text-white font-inter">
+            <div className="font-bold text-4xl my-5 mb-10 text-white font-inter">
               Become an <br /> <HighlightText>Instructor</HighlightText>
             </div>
             {/* para */}
-            <div className="text-white font-inter w-5/6 mb-7 font-medium">
+            <div className="text-white font-inter md:w-5/6 mb-7 font-medium">
               Instructors from around the world teach millions of students on
               StudyNotion. We provide the tools and skills to teach what you
               love.

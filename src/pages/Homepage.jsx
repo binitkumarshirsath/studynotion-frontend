@@ -14,7 +14,7 @@ import ExploreMore from "src/components/core/Home/ExploreMore";
 const Homepage = () => {
   return (
     <>
-      <div className="pt-16 w-full h-full flex bg-richblack-900  flex-col items-center mx-auto ">
+      <div className="pt-16 md:w-full h-full flex bg-richblack-900  flex-col items-center mx-auto ">
         {/* Button */}
         <div className="font-inter max-h-fit text-richblack-200 flex justify-center items-center">
           <Link>
@@ -32,7 +32,7 @@ const Homepage = () => {
         </div>
 
         {/* Heading + Para + 2Buttons */}
-        <div className="mt-10  mx-auto flex w-7/12 text-center flex-col items-center text-white">
+        <div className="mt-10   mx-auto flex md:w-7/12 w-10/12 text-center flex-col items-center text-white">
           <div className="font-bold text-4xl font-mono text-white">
             Empower Your Future with{" "}
             <HighlightText>Coding Skills</HighlightText>
@@ -78,7 +78,7 @@ const Homepage = () => {
         {/*  CodeBlock section -> Text and animation*/}
 
         <CodeBlock
-          content={`<!DOCTYPE html>\n <html lang="en">\n<head>\n<title>Binit loves to code💓</title>\n</head>\n<body>\n<h1><a href="/dsa">DSA🔥</a></h1>\n<nav> <a href="/development">Development👨🏿‍💻</a> <a href="/ML">ML🤖</a> <a href="/happy">smile</a>\n</nav>\n</body>`}
+          content={`<!DOCTYPE html>\n <html lang="en">\n<head>\n<title>Binit loves to code💓</title>\n</head>\n<body>\n<h1><a href="/dsa">DSA🔥</a></h1>\n<nav> <a href="/development">Dev👨🏿‍💻</a> <a href="/ML">ML🤖</a> <a href="/happy">smile</a>\n</nav>\n</body>`}
           codeColor="text-yellow-5"
           heading={
             <div>
@@ -89,7 +89,7 @@ const Homepage = () => {
           }
           para="Our courses are designed and taught by industry experts who have years of experience in coding and are passionate about sharing their
         knowledge with you."
-          flexDirection=""
+          flexDirection="flex-row"
           key={0}
           ctaBtn1={{
             text: "Try it Yourself",
@@ -156,7 +156,7 @@ const Homepage = () => {
         <ExploreMore />
         {/* rhombus bg wala div */}
         <div className="bghome ">
-          <div className="flex gap-8 justify-center mt-28 h-80 items-center">
+          <div className="flex md:gap-12 gap-6 mx-auto w-11/12   justify-center md:mt-28 h-80 items-center">
             <CTAButton
               bgColor="bg-yellow-50"
               icon={<BsArrowRightShort />}

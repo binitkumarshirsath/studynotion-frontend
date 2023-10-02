@@ -17,7 +17,7 @@ const CourseCard = ({
   return (
     <div
       onClick={() => setCurrentCard(heading)}
-      className={`w-1/3 h-full transition-all duration-300   flex flex-col items-center justify-between   ${
+      className={`md:w-1/3 h-full transition-all duration-300   flex flex-col items-center justify-between   ${
         currentCard === heading
           ? "shadow-[15px_15px_1px_rgba(255,255,0,1)] bg-white text-richblack-800"
           : "bg-richblack-800 text-white"
@@ -39,13 +39,19 @@ const CourseCard = ({
         </div>
       </div>
       {/* level and lesson */}
-      <div className="border-t-2  w-full h-full border-dashed text-richblack-300 ">
+      <div
+        className={`border-t-[3px]  w-full h-full border-dashed text-richblack-700 ${
+          heading === currentCard
+            ? "border-richblack-600"
+            : "border-richblack-400"
+        }`}
+      >
         <div
-          className={`flex  mt-7 h-full w-11/12 mx-auto items-center justify-between pb-8 ${
+          className={`flex ${
             currentCard === heading
               ? "text-caribbeangreen-200"
-              : "text-blue-400"
-          }`}
+              : "text-richblack-400"
+          }  mt-7 h-full w-11/12 mx-auto items-center justify-between pb-8 `}
         >
           <div className="flex gap-2 items-center pl-4">
             <div>
@@ -53,11 +59,11 @@ const CourseCard = ({
             </div>
             <div className="font-semibold">{level}</div>
           </div>
-          <div className="flex gap-2 items-center pr-4">
+          <div className={`flex gap-2 items-center pr-4 `}>
             <div>
               <ImTree />
             </div>
-            <div className="font-semibold">{lessonNo}</div>
+            <div className={`font-semibold `}>Lesson {lessonNo}</div>
           </div>
         </div>
       </div>

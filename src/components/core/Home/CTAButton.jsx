@@ -2,12 +2,13 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 const CTAButton = ({ text, linkTo, bgColor, shadowColor, textColor, icon }) => {
   return (
-    <div
+    <Link
+      to={`${linkTo}`}
       className={`${bgColor} rounded-md py-3  px-4 flex gap-2 justify-center items-center font-bold font-mono text-lg  transition-all duration-300 hover:scale-105 shadow-sm ${shadowColor} ${" "}  ${textColor} font-semibold`}
     >
-      <Link to={`${linkTo}`}>{text}</Link>
+      {text}
       {icon}
-    </div>
+    </Link>
   );
 };
 

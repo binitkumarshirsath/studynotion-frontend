@@ -12,10 +12,10 @@ const Footer = () => {
       <div className="flex justify-center">
         <div className="flex w-10/12 justify-center mt-5 border-b border-richblack-700 ">
           {/* first half */}
-          <div className="w-3/6 flex border-r border-richblack-700  ">
+          <div className="w-3/6 md:flex border-r border-richblack-700  ">
             {/* First coloumn logo wala */}
-            <div className="flex flex-col w-1/3">
-              <img src={Logo} alt="logo" className="w-3/4 mb-3" />
+            <div className="flex flex-col md:w-1/3">
+              <img src={Logo} alt="logo" className="md:w-3/4  mb-3" />
               <FooterHeading heading="Company" />
               {["About", "Carrers", "Affiliates"].map((linkItem, i) => {
                 return <FooterLink key={i} linkItem={linkItem} />;
@@ -64,7 +64,7 @@ const Footer = () => {
             </div>
           </div>
           {/* secon half == Right side  */}
-          <div className="w-3/6 flex ml-10  ">
+          <div className="w-3/6 md:flex ml-10  ">
             {/* First coloumn logo wala */}
             <div className="flex flex-col w-1/3">
               <FooterHeading heading="Subjects" />
@@ -88,8 +88,9 @@ const Footer = () => {
           </div>
         </div>
       </div>
+      {/* bottom footer */}
       <div className="flex justify-center">
-        <div className="flex justify-between w-10/12 h-20 mt-5 text-white">
+        <div className="md:flex justify-between md:w-10/12 mx-auto h-20 mt-5 text-white">
           <div className="flex gap-2">
             <FooterLink key={1} linkItem="Privacy Policy" />
             <FooterLink key={2} linkItem="Cookies " />

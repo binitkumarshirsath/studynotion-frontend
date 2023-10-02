@@ -36,14 +36,14 @@ const data = [
 const TimelineSection = () => {
   return (
     <>
-      <div className="w-10/12 my-24 mx-auto">
-        <div className=" flex mb-28 justify-around">
-          <div className="text-4xl w-3/6 font-bold font-inter text-richblack-800">
+      <div className="md:w-10/12 w-11/12 my-24 mx-auto">
+        <div className=" md:flex md:mb-28 mb-16 justify-around">
+          <div className="text-4xl md:w-3/6 mb-5 font-bold font-inter text-richblack-800">
             Get the Skills you need for a{" "}
             <HighlightText>Job that is in Demand</HighlightText>
           </div>
-          <div className="flex flex-col items-start w-[40%] ">
-            <div className="text-base font-inter text-richblack-200 font-semibold">
+          <div className="flex flex-col  items-start md:w-[40%] ">
+            <div className="text-base font-inter mb-5 text-richblack-200 font-semibold">
               The modern StudyNotion is the dictates its own terms. Today, to be
               a competitive specialist requires more than professional skills.
             </div>
@@ -61,18 +61,18 @@ const TimelineSection = () => {
           </div>
         </div>
 
-        <div className="flex justify-around items-center">
+        <div className="md:flex justify-around items-center">
           {/* left side icons timeline */}
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-5 mb-16">
             {data.map((dataItem, index) => {
               return (
-                <div key={index} className="flex gap-4 items-center flex-row">
+                <div key={index} className="flex gap-4  items-center flex-row">
                   {/* round photo */}
                   <div>
                     <img
                       src={dataItem.logo}
                       alt={`${dataItem.heading.toLocaleLowerCase()}`}
-                      className="w-5"
+                      className="w-5 "
                     />
                   </div>
                   {/* heading and subheading */}
@@ -98,20 +98,20 @@ const TimelineSection = () => {
                 className="shadow-lg z-0 shadow-blue-600"
               />
             </div>
-            <div className="bg-caribbeangreen-700 w-10/12 flex justify-evenly items-center bottom-[0] translate-y-14 left-16 h-32 absolute z-10 ">
-              <div className="flex justify-between gap-6 items-center border-r border-caribbeangreen-400">
-                <div className="font-semibold text-3xl font-inter  text-white">
+            <div className="bg-caribbeangreen-700 md:w-10/12 w-5/6 flex justify-evenly items-center bottom-[0] md:translate-y-14 md:left-16 left-0 translate-x-6 translate-y-6 md:h-32 h-16 absolute z-10 ">
+              <div className="flex md:justify-between md:gap-6 items-center border-r border-caribbeangreen-400">
+                <div className="font-semibold md:text-3xl font-inter  text-white">
                   10+
                 </div>
-                <div className="font-thin text-2xl mr-16     text-caribbeangreen-300  ">
+                <div className="font-thin md:text-2xl md:mr-16     text-caribbeangreen-300  ">
                   Years of <br /> Experience
                 </div>
               </div>
               <div className="flex gap-6 items-center justify-around">
-                <div className="font-semibold text-3xl font-inter  text-white">
+                <div className="font-semibold md:text-3xl font-inter  text-white">
                   250+
                 </div>
-                <div className="font-thin text-2xl text-caribbeangreen-300  ">
+                <div className="font-thin md:text-2xl text-caribbeangreen-300  ">
                   Types of <br /> Courses
                 </div>
               </div>

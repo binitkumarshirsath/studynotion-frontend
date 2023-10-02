@@ -8,8 +8,9 @@
 
 html,
 body {
-  /* overflow-x: hidden; */
+  overflow-x: hidden;
   overscroll-behavior: auto;
+
   /* background-color: #000814; */
 }
 

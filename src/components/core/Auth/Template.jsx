@@ -10,16 +10,16 @@ import SignupForm from "src/components/common/auth/SignupForm";
 // This is a template used for styling login and signup page
 const Template = ({ img, heading, styledtext, subheading, formType }) => {
   return (
-    <div className="h-screen w-full bg-richblack-900">
-      <div className="flex w-9/12 mx-auto pt-16 flex-col md:flex-row-reverse   md:justify-between">
+    <div className="md:h-screen h-auto w-full bg-richblack-900">
+      <div className="flex w-10/12 md:9/12 mx-auto pt-16 flex-col md:flex-row-reverse md:items-center  md:justify-between">
         {/* image */}
-        <div className="relative md:w-4/12">
+        <div className="relative md:w-5/12">
           <img src={img} alt="" className="absolute -top-4 -left-4" />
           <img src={background} alt="" />
         </div>
         {/* Heading and subheading and form */}
-        <div className="flex flex-col md:w-5/12 ">
-          <div className="text-white text-4xl font-bold font-montserrat">
+        <div className="flex flex-col md:w-5/12 mt-5 w-full">
+          <div className="text-white text-4xl font-bold font-poppins">
             {heading}
           </div>
           <div className="text-mono mt-4 text-richblack-200 ">

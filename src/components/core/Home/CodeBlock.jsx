@@ -14,17 +14,17 @@ const CodeBlock = ({
   return (
     <>
       <div
-        className={`mt-24 flex  justify-center  w-10/12 ${flexDirection}  gap-32  `}
+        className={`mt-24 flex   justify-center md:flex-row  w-11/12 md:${flexDirection} flex-col first-letter: gap-32  `}
       >
         {/* written part and btns */}
-        <div className="w-4/6">
+        <div className="md:w-4/6 w-11/12">
           <div className="text-white text-3xl font-bold font-mono">
             {heading}
           </div>
           <p className="font-inter text-richblack-300 font-semibold mt-4 ">
             {para}
           </p>
-          <div className="flex mt-5 justify-start gap-11">
+          <div className="flex mt-5 justify-start md:gap-11 gap-5">
             <CTAButton
               text={ctaBtn1.text}
               bgColor={ctaBtn1.bgColor}
@@ -45,7 +45,7 @@ const CodeBlock = ({
         </div>
         {/* typeanimation code */}
         <div
-          className={`w-5/6  border rounded-sm  border-richblack-500 bg-gra  p-2 flex `}
+          className={`md:w-5/6 w- border rounded-sm  border-richblack-500 bg-gra  p-2 flex `}
         >
           <div className="w-[4%] mx-4  text-richblack-200 font-semibold">
             <p>1</p>
@@ -62,6 +62,7 @@ const CodeBlock = ({
             <p>12</p>
             <p>13</p>
             <p>14</p>
+            <p>15</p>
           </div>
           <div className={`${codeColor} w-full font-bold font-mono`}>
             <TypeAnimation
