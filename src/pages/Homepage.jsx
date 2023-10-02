@@ -5,7 +5,7 @@ import { BsArrowRightShort } from "react-icons/bs";
 import Banner from "src/assets/Images/banner.mp4";
 import HighlightText from "src/components/core/Home/HighlightText";
 import CodeBlock from "src/components/core/Home/CodeBlock";
-import Footer from "src/components/common/Footer";
+import Footer from "src/components/common/Footer/Footer";
 import TimelineSection from "src/components/core/Home/TimelineSection";
 import LearningLanguage from "src/components/core/Home/LearningLanguage";
 import InstructorAndReview from "src/components/core/Home/InstructorAndReview";

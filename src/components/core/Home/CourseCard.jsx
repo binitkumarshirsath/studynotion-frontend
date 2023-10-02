@@ -29,7 +29,7 @@ const CourseCard = ({
           {heading}
         </div>
         <div
-          className={`text-base poppins  w-11/12 mx-auto ${
+          className={`text-base font-poppins  w-11/12 mx-auto ${
             currentCard === heading
               ? "text-richblack-500"
               : "text-richblack-300"
