@@ -11,7 +11,7 @@ const CustomInput = ({ label, type, name, placeholder }) => {
         {label} <sup className="text-red-700">*</sup>
       </label>
       <input
-        className="text-richblack-25 w-full font-montserrat px-2 rounded-md bg-richblack-700 shadow-sm shadow-richblack-500 py-2"
+        className="text-richblack-25 w-full font-montserrat px-2 rounded-md bg-richblack-700 shadow-sm shadow-richblack-200 py-2"
         type={showPassword ? "text" : type}
         name={name}
         placeholder={placeholder}

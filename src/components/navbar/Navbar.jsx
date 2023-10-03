@@ -5,6 +5,7 @@ import Logo from "src/assets/Logo/Logo-Full-Light.png";
 // import navlinks data
 import NavbarLinks from "src/data/navbar-links";
 import CTAButton from "../common/CTAButton";
+
 const Navbar = () => {
   return (
     <div className="h-14 bg-richblack-800">
@@ -14,10 +15,10 @@ const Navbar = () => {
           <img src={Logo} alt="logo" className="max-h-8 object-contain" />
         </Link>
         {/* navlinks */}
-        <nav className="flex items-center text-richblack-25 gap-5 text-base font-montserrat">
+        <nav className="flex font-medium items-center text-richblack-25 gap-5 text-base font-montserrat">
           {NavbarLinks.map((navitem, index) => {
             return navitem.title === "Catalogue" ? (
-              <div></div>
+              <div key={index}></div>
             ) : (
               <NavLink key={index} to={navitem.path}>
                 {navitem.title}
@@ -39,7 +40,7 @@ const Navbar = () => {
           />
           <CTAButton
             bgColor="bg-richblack-700"
-            key={1}
+            key={2}
             linkTo="/signup"
             shadowColor="shadow-richblack-200"
             text="Sign Up"
