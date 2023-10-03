@@ -1,10 +1,20 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-const CTAButton = ({ text, linkTo, bgColor, shadowColor, textColor, icon }) => {
+const CTAButton = ({
+  text,
+  linkTo,
+  bgColor,
+  shadowColor,
+  textColor,
+  icon,
+  style,
+}) => {
   return (
     <Link
       to={`${linkTo}`}
-      className={`${bgColor} rounded-md py-3  px-4 flex gap-2 justify-center items-center font-bold font-mono text-lg  transition-all duration-300 hover:scale-105 shadow-sm ${shadowColor} ${" "}  ${textColor} font-semibold`}
+      className={`${bgColor} rounded-md ${
+        style ? style : "py-3 px-4 font-bold font-mono text-lg"
+      }  flex gap-2 justify-center items-center     transition-all duration-300 hover:scale-105 shadow-sm ${shadowColor} ${" "}  ${textColor} `}
     >
       {text}
       {icon}
@@ -13,6 +23,7 @@ const CTAButton = ({ text, linkTo, bgColor, shadowColor, textColor, icon }) => {
 };
 
 CTAButton.propTypes = {
+  style: PropTypes.string,
   text: PropTypes.string,
   linkTo: PropTypes.string,
   bgColor: PropTypes.string,

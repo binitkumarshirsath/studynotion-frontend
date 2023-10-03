@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 // import components and images
 import background from "src/assets/Images/frame.png";
-import HighlightText from "../Home/HighlightText";
+import HighlightText from "../home/HighlightText";
 
 // import login and signup form
 import LoginForm from "src/components/auth/LoginForm";

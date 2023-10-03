@@ -19,7 +19,7 @@ const LoginForm = () => {
           placeholder="Enter your Password"
           key={2}
         />
-        <div className="text-blue-500 text-base  absolute -bottom-4 right-0">
+        <div className="text-blue-200 font-mono font-medium text-base  absolute -bottom-5 right-0">
           Forget Password
         </div>
       </div>

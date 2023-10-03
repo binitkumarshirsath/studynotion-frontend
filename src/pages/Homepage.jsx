@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 import CTAButton from "src/components/common/CTAButton";
 import { BsArrowRightShort } from "react-icons/bs";
 import Banner from "src/assets/Images/banner.mp4";
-import HighlightText from "src/components/Home/HighlightText";
-import CodeBlock from "src/components/Home/CodeBlock";
-import Footer from "src/components/Footer/Footer";
-import TimelineSection from "src/components/Home/TimelineSection";
-import LearningLanguage from "src/components/Home/LearningLanguage";
-import InstructorAndReview from "src/components/Home/InstructorAndReview";
-import ExploreMore from "src/components/Home/ExploreMore";
+import HighlightText from "src/components/home/HighlightText";
+import CodeBlock from "src/components/home/CodeBlock";
+import Footer from "src/components/footer/Footer";
+import TimelineSection from "src/components/home/TimelineSection";
+import LearningLanguage from "src/components/home/LearningLanguage";
+import InstructorAndReview from "src/components/home/InstructorAndReview";
+import ExploreMore from "src/components/home/ExploreMore";
 
 const Homepage = () => {
   return (
