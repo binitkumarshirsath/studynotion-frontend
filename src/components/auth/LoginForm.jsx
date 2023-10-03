@@ -1,4 +1,4 @@
-import CustomInput from "../CustomInput";
+import CustomInput from "../common/CustomInput";
 
 const LoginForm = () => {
   return (

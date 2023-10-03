@@ -5,8 +5,8 @@ import background from "src/assets/Images/frame.png";
 import HighlightText from "../Home/HighlightText";
 
 // import login and signup form
-import LoginForm from "src/components/common/auth/LoginForm";
-import SignupForm from "src/components/common/auth/SignupForm";
+import LoginForm from "src/components/auth/LoginForm";
+import SignupForm from "src/components/auth/SignupForm";
 // This is a template used for styling login and signup page
 const Template = ({ img, heading, styledtext, subheading, formType }) => {
   return (

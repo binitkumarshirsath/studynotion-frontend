@@ -1,4 +1,4 @@
-import Template from "src/components/core/Auth/Template";
+import Template from "src/components/auth/Template";
 
 import image from "src/assets/Images/signup.webp";
 const Signup = () => {

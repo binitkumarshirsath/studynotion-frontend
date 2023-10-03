@@ -4,7 +4,7 @@ import HighlightText from "./HighlightText";
 import Image1 from "src/assets/Images/Know_your_progress.png";
 import Image2 from "src/assets/Images/Compare_with_others.png";
 import Image3 from "src/assets/Images/Plan_your_lessons.png";
-import CTAButton from "./CTAButton";
+import CTAButton from "../common/CTAButton";
 const LearningLanguage = () => {
   return (
     <div className="mx-auto w-11/12 my-32">

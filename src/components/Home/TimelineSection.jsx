@@ -1,4 +1,4 @@
-import CTAButton from "./CTAButton";
+import CTAButton from "../common/CTAButton";
 import HighlightText from "./HighlightText";
 
 // import photos

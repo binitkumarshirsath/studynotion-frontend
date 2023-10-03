@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
 
-import CTAButton from "src/components/core/Home/CTAButton";
+import CTAButton from "src/components/common/CTAButton";
 import { BsArrowRightShort } from "react-icons/bs";
 import Banner from "src/assets/Images/banner.mp4";
-import HighlightText from "src/components/core/Home/HighlightText";
-import CodeBlock from "src/components/core/Home/CodeBlock";
-import Footer from "src/components/common/Footer/Footer";
-import TimelineSection from "src/components/core/Home/TimelineSection";
-import LearningLanguage from "src/components/core/Home/LearningLanguage";
-import InstructorAndReview from "src/components/core/Home/InstructorAndReview";
-import ExploreMore from "src/components/core/Home/ExploreMore";
+import HighlightText from "src/components/Home/HighlightText";
+import CodeBlock from "src/components/Home/CodeBlock";
+import Footer from "src/components/Footer/Footer";
+import TimelineSection from "src/components/Home/TimelineSection";
+import LearningLanguage from "src/components/Home/LearningLanguage";
+import InstructorAndReview from "src/components/Home/InstructorAndReview";
+import ExploreMore from "src/components/Home/ExploreMore";
 
 const Homepage = () => {
   return (

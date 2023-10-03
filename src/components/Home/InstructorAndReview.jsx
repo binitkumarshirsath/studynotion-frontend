@@ -1,7 +1,7 @@
 // import image
 import Instructor from "src/assets/Images/Instructor.png";
 import HighlightText from "./HighlightText";
-import CTAButton from "./CTAButton";
+import CTAButton from "../common/CTAButton";
 import { BsArrowRightShort } from "react-icons/bs";
 
 const InstructorAndReview = () => {

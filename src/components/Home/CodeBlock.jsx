@@ -1,7 +1,7 @@
 import { TypeAnimation } from "react-type-animation";
 import PropTypes from "prop-types";
 
-import CTAButton from "./CTAButton";
+import CTAButton from "../common/CTAButton";
 const CodeBlock = ({
   heading,
   para,
