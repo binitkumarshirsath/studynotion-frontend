@@ -11,6 +11,13 @@ export const theme = {
   },
 
   extend: {
+    keyframes: {
+      toggle: {
+        "0%": { transform: "translateX(0)" },
+        "100%": { transform: "translateX(50px)" },
+      },
+    },
+
     colors: {
       white: "#fff",
       black: "#000",

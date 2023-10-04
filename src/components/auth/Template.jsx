@@ -33,13 +33,6 @@ const Template = ({ img, heading, styledtext, subheading, formType }) => {
 
           {/* Form */}
           {formType === "login" ? <LoginForm /> : <SignupForm />}
-          <button
-            className={` bg-yellow-50 py-2 rounded-md  font-semibold text-richblack-800 ${
-              formType === "login" ? "mt-8" : "mt-4"
-            }`}
-          >
-            {formType === "login" ? "Login" : "Create Account"}
-          </button>
         </div>
       </div>
     </div>

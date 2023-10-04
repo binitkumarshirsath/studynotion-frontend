@@ -40,7 +40,7 @@ const Navbar = () => {
         <nav className="flex font-medium items-center text-richblack-25 gap-5 text-base font-montserrat">
           {NavbarLinks.map((navitem, index) => {
             return navitem.title === "Catalogue" ? (
-              <div key={index} className="relative group">
+              <div key={index} aria-disabled={true} className="relative group">
                 <div className="flex items-center gap-1" key={index}>
                   {navitem.title}
                   <MdKeyboardArrowDown />
@@ -51,7 +51,6 @@ const Navbar = () => {
                 >
                   <div className="h-6 w-6 rounded-sm  bg-richblack-25 group-hover:opacity-100  absolute -top-2 left-0  group-hover:visible transform rotate-45 translate-x-32 transition-all duration-200 "></div>
                   {categories?.map((courseItem, index) => {
-                    console.log(courseItem);
                     return (
                       <Link
                         key={index}

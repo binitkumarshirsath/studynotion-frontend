@@ -2,7 +2,7 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import PropTypes from "prop-types";
 import { useState } from "react";
 
-const CustomInput = ({ label, type, name, placeholder }) => {
+const CustomInput = ({ label, type, name, placeholder, value, onChange }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
@@ -11,8 +11,11 @@ const CustomInput = ({ label, type, name, placeholder }) => {
         {label} <sup className="text-red-700">*</sup>
       </label>
       <input
+        required
+        onChange={onChange}
+        value={value}
         className="text-richblack-25 w-full font-montserrat px-2 rounded-md bg-richblack-700 shadow-sm shadow-richblack-200 py-2"
-        type={showPassword ? "text" : type}
+        type={showPassword ? "text" : `${type}`}
         name={name}
         placeholder={placeholder}
       />
@@ -35,6 +38,8 @@ CustomInput.propTypes = {
   name: PropTypes.string,
   type: PropTypes.string,
   placeholder: PropTypes.string,
+  value: PropTypes.any,
+  onChange: PropTypes.func,
 };
 
 export default CustomInput;
