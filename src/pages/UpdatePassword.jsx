@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { resetPassword } from "src/api/operations/profileApi";
 const UpdatePassword = () => {
   const dispatch = useDispatch();
-  // extract the toke  from parameter
+  // extract the token  from parameter
   let { id } = useParams();
   const [details, setDetails] = useState({
     token: id,

@@ -7,10 +7,16 @@ import HighlightText from "../home/HighlightText";
 // import login and signup form
 import LoginForm from "src/components/auth/LoginForm";
 import SignupForm from "src/components/auth/SignupForm";
+import { useSelector } from "react-redux";
 // This is a template used for styling login and signup page
 const Template = ({ img, heading, styledtext, subheading, formType }) => {
+  const loading = useSelector((state) => state.authReducer.loading);
+
+  if (loading) {
+    return <div className="custom-loader"></div>;
+  }
   return (
-    <div className="md:h-screen h-auto w-full bg-richblack-900">
+    <div className="md:h-screen  w-full bg-richblack-900">
       <div className="flex w-10/12 md:9/12 mx-auto pt-16 flex-col md:flex-row-reverse md:items-center  md:justify-between">
         {/* image */}
         <div className="relative md:w-5/12">

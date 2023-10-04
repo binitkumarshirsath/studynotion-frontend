@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
@@ -9,6 +9,9 @@ import { login } from "src/api/operations/authApi";
 const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const loading = useSelector((state) => state.authReducer.loading);
+
   // state variable to store user object
   const [user, setUser] = useState({
     email: "",
@@ -27,12 +30,17 @@ const LoginForm = () => {
 
   const handleSubmit = async () => {
     try {
-      await dispatch(login(user, navigate));
+      dispatch(login(user, navigate));
     } catch (error) {
       toast.error("Error while logging in");
       console.log(error);
     }
   };
+
+  if (loading) {
+    return <div className="custom-loader"></div>;
+  }
+
   return (
     <div className="w-full flex flex-col  mt-6 ">
       {/* input element */}

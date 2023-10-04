@@ -1,12 +1,14 @@
 import toast from "react-hot-toast";
 import axiosInstance from "..";
 import { apiRoutes } from "../apiRoute";
+import { setIsMailSent } from "src/store/slices/authSlice";
 
 export const resetPasswordToken = (email) => {
-  return async () => {
+  return async (dispatch) => {
     try {
       const { data } = await axiosInstance.post(apiRoutes.sendToken, { email });
-      console.log(data);
+      toast.success(data.message);
+      dispatch(setIsMailSent({ isMailSent: true }));
     } catch (error) {
       console.error("Error while resetting password", error);
       toast.error(error.response.data.message);

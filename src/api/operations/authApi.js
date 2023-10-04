@@ -5,34 +5,73 @@ import { apiRoutes } from "src/api/apiRoute";
 
 import axiosInstance from "..";
 
-import { setLoading } from "src/store/slices/authSlice";
-//login function
-export const login = (user) => {
-  return async (dispatch) => {
-    dispatch(setLoading(true));
+import { setLoading, setSignupData } from "src/store/slices/authSlice";
+import { setUser } from "src/store/slices/profileSlice";
+// import store from "src/store/store";
+
+//otp function
+export const sendotp = (params, navigate) => {
+  return async () => {
     try {
-      const { data } = await axiosInstance.post(apiRoutes.login, user);
+      const { data } = await axiosInstance.post(apiRoutes.sendOTP, {
+        email: params,
+      });
       console.log(data);
+      console.log(data.response.OTP);
+      return data.response.OTP;
     } catch (error) {
-      console.log("Error while logging in:", error.response.data);
-      toast.error(error.response.data.message);
+      console.error("Error while sending otp", error);
+      toast.error("Error while sending otp");
     }
-    dispatch(setLoading(false));
   };
 };
 
 //signup function
-export const signup = (user) => {
-  return async () => {
-    const loading = toast.loading("Loading...");
+export const signup = (params, navigate) => {
+  return async (dispatch) => {
+    dispatch(setLoading({ loading: true }));
+    dispatch(setSignupData({ signupdata: params }));
+    const otp = await dispatch(sendotp(params.email, navigate));
     try {
-      const { data } = await axiosInstance.post(apiRoutes.signup, user);
+      const { data } = await axiosInstance.post(apiRoutes.signup, {
+        ...params,
+        otp,
+      });
       console.log(data);
-      toast.dismiss(loading);
+      toast.success("Account created successfully ! Please Login");
+      navigate("/login");
     } catch (error) {
       console.log("Error while creating account:", error.response.data);
       toast.error(error.response.data.message);
-      toast.dismiss(loading);
     }
+    dispatch(setLoading({ loading: false }));
+  };
+};
+
+//login function
+export const login = (params, navigate) => {
+  return async (dispatch) => {
+    dispatch(setLoading({ loading: true }));
+    try {
+      const { data } = await axiosInstance.post(apiRoutes.login, params);
+      console.log(data);
+      const user = data.user;
+      const name = user.firstName + user.lastName;
+      const image = user.image;
+      localStorage.setItem("token", JSON.stringify(data.token));
+      dispatch(
+        setUser({
+          name,
+          image,
+        })
+      );
+      localStorage.setItem("user", JSON.stringify({ name, image }));
+      toast.success("User logged in successfully.");
+      navigate("/dashboard/user");
+    } catch (error) {
+      console.log("Error while logging in:", error.response.data);
+      toast.error(error.response.data.message);
+    }
+    dispatch(setLoading({ loading: false }));
   };
 };

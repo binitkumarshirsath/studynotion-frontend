@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+
 /* 
     initial state of auth
     check if token is available in local storage
@@ -35,4 +36,5 @@ const authSlice = createSlice({
 
 export const { setAuth, setLoading, setSignupData, setIsMailSent } =
   authSlice.actions;
+
 export default authSlice.reducer;

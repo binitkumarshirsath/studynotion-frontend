@@ -34,9 +34,14 @@ const ForgotPassword = () => {
           {!isMailSent ? "RESET PASSWORD" : "CHECK EMAIL"}
         </div>
         <div className="text-xl w-4/5 text-richblack-50 font-bold">
-          {!isMailSent
-            ? "Have no fear. We’ll email you instructions to reset your password. If you dont have access to your email we can try account recovery"
-            : `We have sent the reset email to `}
+          {!isMailSent ? (
+            "Have no fear. We’ll email you instructions to reset your password. If you dont have access to your email we can try account recovery"
+          ) : (
+            <>
+              We have sent the reset email to{" "}
+              <span className="text-yellow-50">{email}</span>
+            </>
+          )}
         </div>
 
         <div className="w-4/5 mt-4 mb-2">

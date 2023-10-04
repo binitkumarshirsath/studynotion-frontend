@@ -1,9 +1,14 @@
 import { useEffect, useState } from "react";
 import CustomInput from "../common/CustomInput";
+import { useDispatch } from "react-redux";
+import { signup } from "src/api/operations/authApi";
+import { useNavigate } from "react-router-dom";
 
 const SignupForm = () => {
   //switch between roles student and instructor
   const [accountType, setAccountType] = useState("student");
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   //save this state in redux be4 sending otp
   const [user, setUser] = useState({
@@ -32,13 +37,13 @@ const SignupForm = () => {
 
   //submit form
   const handleSubmit = () => {
-    console.log(user);
+    dispatch(signup(user, navigate));
   };
 
   return (
-    <div className="flex flex-col mt-6 w-full h-auto ">
+    <div className="flex flex-col h-full mt-6 w-full  ">
       {/* Student and instructor button */}
-      <div className="flex w-min gap-3 my-4 px-2  py-1 rounded-full bg-richblack-700">
+      <div className="flex w-min gap-3 my-4 px-2 h-full  py-1 rounded-full bg-richblack-700">
         <button
           onClick={() => setAccountType("student")}
           className={`transition-all duration-150 rounded-full  px-4 py-2 text-richblack-50 w-fit ${
