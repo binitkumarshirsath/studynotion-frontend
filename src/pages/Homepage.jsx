@@ -14,7 +14,7 @@ import ExploreMore from "src/components/home/ExploreMore";
 const Homepage = () => {
   return (
     <>
-      <div className="pt-16 md:w-full h-full flex bg-richblack-900  flex-col items-center mx-auto ">
+      <div className="pt-16 md:w-full h-auto flex bg-richblack-900  flex-col items-center mx-auto ">
         {/* Button */}
         <div className="font-inter max-h-fit text-richblack-200 flex justify-center items-center">
           <Link>
@@ -62,7 +62,7 @@ const Homepage = () => {
         </div>
 
         {/* Video */}
-        <div className="flex h-full justify-center mt-10">
+        <div className="flex h-auto justify-center mt-10">
           <div className="mx-3 my-7 w-10/12 shadow-[10px_-5px_50px_-5px] shadow-blue-500">
             <video
               className="shadow-[20px_20px_rgba(255,255,255)]"

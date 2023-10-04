@@ -5,24 +5,24 @@ import { apiRoutes } from "src/api/apiRoute";
 
 import axiosInstance from "..";
 
+import { setLoading } from "src/store/slices/authSlice";
 //login function
-export const login = (user, navigate) => {
-  return async () => {
-    const loading = toast.loading("Loading....");
+export const login = (user) => {
+  return async (dispatch) => {
+    dispatch(setLoading(true));
     try {
       const { data } = await axiosInstance.post(apiRoutes.login, user);
       console.log(data);
-      toast.dismiss(loading);
     } catch (error) {
       console.log("Error while logging in:", error.response.data);
       toast.error(error.response.data.message);
-      toast.dismiss(loading);
     }
+    dispatch(setLoading(false));
   };
 };
 
 //signup function
-export const signup = (user, navigate) => {
+export const signup = (user) => {
   return async () => {
     const loading = toast.loading("Loading...");
     try {

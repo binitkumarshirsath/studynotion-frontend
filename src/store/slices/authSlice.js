@@ -11,6 +11,7 @@ const initialState = {
     ? JSON.parse(localStorage.getItem("token"))
     : null,
   loading: false,
+  isMailSent: false,
 };
 
 const authSlice = createSlice({
@@ -26,8 +27,12 @@ const authSlice = createSlice({
     setSignupData: (state, action) => {
       state.signupdata = action.payload.signupdata;
     },
+    setIsMailSent: (state, action) => {
+      state.isMailSent = action.payload.isMailSent;
+    },
   },
 });
 
-export const { setAuth, setLoading, setSignupData } = authSlice.actions;
+export const { setAuth, setLoading, setSignupData, setIsMailSent } =
+  authSlice.actions;
 export default authSlice.reducer;

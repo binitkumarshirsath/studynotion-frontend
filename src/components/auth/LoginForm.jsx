@@ -64,7 +64,7 @@ const LoginForm = () => {
       </div>
       <button
         onClick={handleSubmit}
-        className=" bg-yellow-50  mx-auto w-full  py-2 mt-8 rounded-md  font-semibold text-richblack-800"
+        className=" bg-yellow-50  mx-auto w-full  py-2 mt-8 rounded-md  font-bold text-richblack-700"
       >
         LOGIN
       </button>

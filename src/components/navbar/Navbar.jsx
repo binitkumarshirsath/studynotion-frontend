@@ -49,10 +49,11 @@ const Navbar = () => {
                   className="h-auto rounded-lg group-hover:opacity-100   w-64 flex flex-col gap-4 pb-4 group-hover:visible translate-x-28 z-20 transition-all
                 invisible opacity-0  duration-200 right-0 top-8 absolute py-5 pl-5 bg-richblack-25 text-richblack-700 font-semibold font-montserrat"
                 >
-                  <div className="h-6 w-6 rounded-sm  bg-richblack-25 group-hover:opacity-100  absolute -top-2 left-0  group-hover:visible transform rotate-45 translate-x-32 transition-all duration-200 "></div>
+                  <div className="h-6 w-6 rounded-sm   bg-richblack-25 group-hover:opacity-100  absolute -top-2 left-0  group-hover:visible transform rotate-45 translate-x-32 transition-all duration-200 "></div>
                   {categories?.map((courseItem, index) => {
                     return (
                       <Link
+                        className="hover:text-richblack-900 hover:font-bold"
                         key={index}
                         to={`${courseItem.name
                           .toLowerCase()
