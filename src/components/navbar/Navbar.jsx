@@ -8,12 +8,17 @@ import CTAButton from "../common/CTAButton";
 
 //import icons
 import { MdKeyboardArrowDown } from "react-icons/md";
-
+import { TiShoppingCart } from "react-icons/ti";
 import { useEffect, useState } from "react";
 import axiosInstance from "src/api";
 import { apiRoutes } from "src/api/apiRoute";
+import { useSelector } from "react-redux";
+import Dropbar from "./Dropbar";
 
 const Navbar = () => {
+  //check is user has token/user stored -> means logged in
+  const { role } = useSelector((state) => state.profileReducer);
+  const { token } = useSelector((state) => state.authReducer);
   // fetch categories from backend to show in catalogue
   useEffect(() => {
     getCategories();
@@ -74,27 +79,36 @@ const Navbar = () => {
           })}
         </nav>
         {/* login signup dashboard cart */}
-        <div className="flex gap-5 text-richblack-25  items-center">
-          {/* <div>Cart</div> */}
-          <CTAButton
-            bgColor="bg-richblack-700"
-            key={1}
-            linkTo="/login"
-            shadowColor="shadow-richblack-200"
-            text="Login"
-            textColor="text-richblack-25"
-            style="py-1 px-2 font-base font-montserrat tracking-wider"
-          />
-          <CTAButton
-            bgColor="bg-richblack-700"
-            key={2}
-            linkTo="/signup"
-            shadowColor="shadow-richblack-200"
-            text="Sign Up"
-            textColor="text-richblack-25"
-            style="py-1 px-2 font-base font-montserrat tracking-wider"
-          />
-        </div>
+        {token ? (
+          <div className="flex gap-x-6 text-richblack-5 items-center h-full  border-2 border-white">
+            {/*if token is present means the user is logged in  */}
+            {/* show cart and dashboard to user /admin and show only dashboard to instructor */}
+            <TiShoppingCart size={25} />
+            <Dropbar />
+          </div>
+        ) : (
+          <div className="flex gap-5 text-richblack-25  items-center">
+            {/* <div>Cart</div> */}
+            <CTAButton
+              bgColor="bg-richblack-700"
+              key={1}
+              linkTo="/login"
+              shadowColor="shadow-richblack-200"
+              text="Login"
+              textColor="text-richblack-25"
+              style="py-1 px-2 font-base font-montserrat tracking-wider"
+            />
+            <CTAButton
+              bgColor="bg-richblack-700"
+              key={2}
+              linkTo="/signup"
+              shadowColor="shadow-richblack-200"
+              text="Sign Up"
+              textColor="text-richblack-25"
+              style="py-1 px-2 font-base font-montserrat tracking-wider"
+            />
+          </div>
+        )}
       </div>
     </div>
   );

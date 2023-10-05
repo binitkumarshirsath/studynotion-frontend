@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import CustomInput from "../common/CustomInput";
 import { useDispatch } from "react-redux";
-import { signup } from "src/api/operations/authApi";
 import { useNavigate } from "react-router-dom";
+import { setSignupData } from "src/store/slices/authSlice";
+import { sendotp } from "src/api/operations/authApi";
 
 const SignupForm = () => {
   //switch between roles student and instructor
@@ -35,9 +36,13 @@ const SignupForm = () => {
     });
   };
 
-  //submit form
-  const handleSubmit = () => {
-    dispatch(signup(user, navigate));
+  /*set user data in redux store,
+  send email[otp] to users email
+  navigate to verify email 
+  */
+  const handleSubmit = async () => {
+    dispatch(setSignupData({ signupdata: user }));
+    await sendotp(user.email, navigate, dispatch);
   };
 
   return (
@@ -119,7 +124,7 @@ const SignupForm = () => {
       </div>
       <button
         onClick={handleSubmit}
-        className=" bg-yellow-50  mx-auto w-full  py-2 mt-8 rounded-md  font-semibold text-richblack-800"
+        className=" bg-yellow-50  mx-auto w-full  py-2 my-8 rounded-md  font-semibold text-richblack-800"
       >
         CREATE ACCOUNT
       </button>

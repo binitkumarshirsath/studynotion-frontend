@@ -6,6 +6,12 @@ import { createSlice } from "@reduxjs/toolkit";
     if its available set the token value
 */
 
+/*
+  signupdata holds the signup data while signining
+  token holdes the jwt
+  ismail sent is a flag changing content of password page based 
+  on mail sent or not , works as a template swither
+*/
 const initialState = {
   signupdata: null,
   token: localStorage.getItem("token")
