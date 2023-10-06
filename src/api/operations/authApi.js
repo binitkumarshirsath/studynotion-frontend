@@ -5,7 +5,7 @@ import { apiRoutes } from "src/api/apiRoute";
 
 import axiosInstance from "..";
 
-import { setLoading } from "src/store/slices/authSlice";
+import { setAuth, setLoading } from "src/store/slices/authSlice";
 import { setUser } from "src/store/slices/profileSlice";
 // import store from "src/store/store";
 
@@ -52,6 +52,7 @@ export const signup = async (params, navigate, dispatch) => {
   dispatch(setLoading({ loading: true }));
   try {
     await axiosInstance.post(apiRoutes.signup, params);
+    toast.success("User signed up successfully.");
     navigate("/login");
   } catch (error) {
     console.log("Error while creating account:", error.response.data);
@@ -66,13 +67,13 @@ export const login = (params, navigate) => {
     dispatch(setLoading({ loading: true }));
     try {
       const { data } = await axiosInstance.post(apiRoutes.login, params);
-      console.log(data);
-
       const user = data.user;
       const name = user.firstName + user.lastName;
       const image = user.image;
       const role = user.accountType;
       localStorage.setItem("token", JSON.stringify(data.token));
+      //update state after login
+      dispatch(setAuth({ token: data.token }));
       dispatch(
         setUser({
           name,
@@ -89,4 +90,20 @@ export const login = (params, navigate) => {
     }
     dispatch(setLoading({ loading: false }));
   };
+};
+
+//logout functionality
+export const logout = async (navigate, dispatch) => {
+  localStorage.removeItem("user");
+  localStorage.removeItem("token");
+  dispatch(
+    setUser({
+      name: null,
+      image: null,
+      role: null,
+    })
+  );
+  dispatch(setAuth({ token: null }));
+  toast.success("User logged out successfully.");
+  navigate("/");
 };

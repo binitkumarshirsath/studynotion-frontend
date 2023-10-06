@@ -17,7 +17,7 @@ import Dropbar from "./Dropbar";
 
 const Navbar = () => {
   //check is user has token/user stored -> means logged in
-  const { role } = useSelector((state) => state.profileReducer);
+  // const { role } = useSelector((state) => state.profileReducer);
   const { token } = useSelector((state) => state.authReducer);
   // fetch categories from backend to show in catalogue
   useEffect(() => {
@@ -80,7 +80,7 @@ const Navbar = () => {
         </nav>
         {/* login signup dashboard cart */}
         {token ? (
-          <div className="flex gap-x-6 text-richblack-5 items-center h-full  border-2 border-white">
+          <div className="flex gap-x-6 text-richblack-5 items-center h-full  ">
             {/*if token is present means the user is logged in  */}
             {/* show cart and dashboard to user /admin and show only dashboard to instructor */}
             <TiShoppingCart size={25} />

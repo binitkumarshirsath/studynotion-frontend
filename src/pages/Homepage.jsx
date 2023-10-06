@@ -5,7 +5,6 @@ import { BsArrowRightShort } from "react-icons/bs";
 import Banner from "src/assets/Images/banner.mp4";
 import HighlightText from "src/components/home/HighlightText";
 import CodeBlock from "src/components/home/CodeBlock";
-import Footer from "src/components/footer/Footer";
 import TimelineSection from "src/components/home/TimelineSection";
 import LearningLanguage from "src/components/home/LearningLanguage";
 import InstructorAndReview from "src/components/home/InstructorAndReview";
@@ -179,7 +178,6 @@ const Homepage = () => {
       <TimelineSection />
       <LearningLanguage />
       <InstructorAndReview />
-      <Footer />
     </>
   );
 };

@@ -11,9 +11,6 @@ const VerifyOTP = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.authReducer.signupdata);
-  console.log(user);
-  const parsedOtp = parseInt(otp);
-  console.log(typeof parsedOtp);
   let userSignupData;
   if (user) {
     userSignupData = {
@@ -36,6 +33,7 @@ const VerifyOTP = () => {
             A verfication code has been sent to you. Enter the code below
           </div>
           <div className="max-h-full">
+            {/* copied , need to learn to style it */}
             <OtpInput
               value={otp}
               onChange={setOtp}

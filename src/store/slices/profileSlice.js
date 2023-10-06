@@ -5,9 +5,9 @@ const user = localStorage.getItem("user")
   : null;
 
 const initialState = {
-  name: user.name || null,
-  image: user.image || null,
-  role: user.role || null,
+  name: user?.name || null,
+  image: user?.image || null,
+  role: user?.role || null,
 };
 
 const profileSlice = createSlice({
