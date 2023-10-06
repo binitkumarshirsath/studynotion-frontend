@@ -1,7 +1,7 @@
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { useForm } from "react-hook-form";
 
 import CustomInput from "../common/CustomInput";
 import { login } from "src/api/operations/authApi";
@@ -10,27 +10,19 @@ const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
+
   const loading = useSelector((state) => state.authReducer.loading);
 
   // state variable to store user object
-  const [user, setUser] = useState({
-    email: "",
-    password: "",
-  });
 
-  const handleOnChange = (e) => {
-    const { name } = e.target;
-    setUser((prevUser) => {
-      return {
-        ...prevUser,
-        [name]: e.target.value,
-      };
-    });
-  };
-
-  const handleSubmit = async () => {
+  const onSubmit = async (data) => {
     try {
-      dispatch(login(user, navigate));
+      dispatch(login(data, navigate));
     } catch (error) {
       toast.error("Error while logging in");
       console.log(error);
@@ -44,24 +36,36 @@ const LoginForm = () => {
   return (
     <div className="w-full flex flex-col  mt-6 ">
       {/* input element */}
-      <div className="flex flex-col relative">
+      <div className="flex flex-col relative gap-4">
         <CustomInput
-          onChange={handleOnChange}
           name="email"
           type="email"
           label="Email"
-          value={user.email}
+          errors={errors}
           placeholder="Enter your email"
-          key={1}
+          register={register}
+          validationSchema={{
+            required: "Email is required",
+            pattern: {
+              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+              message: "Invalid email address",
+            },
+          }}
         />
         <CustomInput
-          onChange={handleOnChange}
           name="password"
           type="password"
           label="Password"
-          value={user.password}
           placeholder="Enter your Password"
-          key={2}
+          register={register}
+          errors={errors}
+          validationSchema={{
+            required: "Passoword is required",
+            minLength: {
+              value: 6,
+              message: "Password must me atleast 6 character",
+            },
+          }}
         />
         <Link
           to={"/forgot-password"}
@@ -71,7 +75,7 @@ const LoginForm = () => {
         </Link>
       </div>
       <button
-        onClick={handleSubmit}
+        onClick={handleSubmit(onSubmit)}
         className=" bg-yellow-50  mx-auto w-full  py-2 mt-8 rounded-md  font-bold text-richblack-700"
       >
         LOGIN

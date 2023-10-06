@@ -1,24 +1,25 @@
-import { useState } from "react";
-
 import CustomInput from "src/components/common/CustomInput";
 
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { resetPasswordToken } from "src/api/operations/profileApi";
+import { useForm } from "react-hook-form";
 
 const ForgotPassword = () => {
   const dispatch = useDispatch();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    watch,
+  } = useForm();
 
-  const [email, setEmail] = useState("");
+  const email = watch("email");
 
-  const handleOnChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handleSubmit = async () => {
+  const onSubmit = async (data) => {
     try {
-      dispatch(resetPasswordToken(email));
+      dispatch(resetPasswordToken(data.email));
     } catch (error) {
       console.log(error);
     }
@@ -28,7 +29,7 @@ const ForgotPassword = () => {
   const isMailSent = useSelector((state) => state.authReducer.isMailSent);
 
   return (
-    <div className="bg-richblack-900 flex flex-grow justify-center  w-full">
+    <div className="bg-richblack-900 flex flex-grow h-[calc(100vh-64px)] justify-center  w-full">
       <div className="w-2/5 h-fit  items-center flex flex-col lg:mt-28 mx-auto ">
         <div className="text-3xl w-4/5 text-richblack-25 lg:mb-12 font-extrabold">
           {!isMailSent ? "RESET PASSWORD" : "CHECK EMAIL"}
@@ -51,15 +52,22 @@ const ForgotPassword = () => {
               key={1}
               name="email"
               type="email"
-              value={email}
-              onChange={handleOnChange}
+              register={register}
+              errors={errors}
+              validationSchema={{
+                required: "Email is required",
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: "Invalid Email address",
+                },
+              }}
               placeholder="Enter Your Email Address"
             />
           ) : (
             ""
           )}
           <button
-            onClick={handleSubmit}
+            onClick={handleSubmit(onSubmit)}
             className=" bg-yellow-50  mx-auto w-full  py-2 mt-8 rounded-md  font-bold text-richblack-700"
           >
             {!isMailSent ? "RESET PASSWORD" : "RESEND EMAIL"}

@@ -13,12 +13,12 @@ import { useSelector } from "react-redux";
 const App = () => {
   const loading = useSelector((state) => state.authReducer.loading);
   return (
-    <div className="min-h-screen w-full flex flex-col">
+    <div className="h-auto w-full flex flex-col">
       <Navbar />
       {/* loader */}
       {loading ? (
-        <div className="bg-richblack-800 flex-1 flex justify-center items-center">
-          <div className="custom-loader"></div>
+        <div className="bg-richblack-700 h-[calc(100vh-56px)] flex justify-center items-center">
+          <div className="custom-loader h-full"></div>
         </div>
       ) : (
         <Routes>

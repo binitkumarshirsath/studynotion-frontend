@@ -1,50 +1,51 @@
 import { useEffect, useState } from "react";
-import CustomInput from "../common/CustomInput";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setSignupData } from "src/store/slices/authSlice";
 import { sendotp } from "src/api/operations/authApi";
+import { useForm } from "react-hook-form";
+
+import CustomInput from "../common/CustomInput";
+//switch between roles student and instructor
 
 const SignupForm = () => {
-  //switch between roles student and instructor
   const [accountType, setAccountType] = useState("student");
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    watch,
+    setError,
+    clearErrors,
+  } = useForm();
   //save this state in redux be4 sending otp
-  const [user, setUser] = useState({
-    accountType: accountType,
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
-
   // Update the accountType property in the user state when accountType changes
-  useEffect(() => {
-    setUser((prevData) => {
-      return { ...prevData, accountType };
-    });
-  }, [accountType]);
-
-  // handleChange for input fields
-  const handleChange = (e) => {
-    const { name } = e.target;
-    setUser((prevData) => {
-      return { ...prevData, [name]: e.target.value };
-    });
-  };
 
   /*set user data in redux store,
   send email[otp] to users email
   navigate to verify email 
   */
-  const handleSubmit = async () => {
-    dispatch(setSignupData({ signupdata: user }));
-    await sendotp(user.email, navigate, dispatch);
+  const onSubmit = async (data) => {
+    dispatch(setSignupData({ signupdata: { ...data, accountType } }));
+    await sendotp(data.email, navigate, dispatch);
   };
 
+  // used to check if password and cnfpassword matches
+  const password = watch("password");
+  const confirmPassword = watch("confirmPassword");
+
+  useEffect(() => {
+    if (password !== confirmPassword) {
+      setError("confirmPassword", {
+        message: "Passwords do not match",
+      });
+    } else {
+      clearErrors("confirmPassword");
+    }
+  }, [password, confirmPassword, setError, errors, clearErrors]);
   return (
     <div className="flex flex-col h-full mt-6 w-full  ">
       {/* Student and instructor button */}
@@ -71,32 +72,42 @@ const SignupForm = () => {
       {/* firstname and lastname */}
       <div className="flex w-full gap-5">
         <CustomInput
-          onChange={handleChange}
-          value={user.firstName}
-          key={1}
           label="First Name"
           name="firstName"
+          register={register}
+          errors={errors}
+          validationSchema={{
+            required: "First name is required",
+          }}
           placeholder="Enter first name"
           type="text"
         />
         <CustomInput
-          key={2}
-          onChange={handleChange}
-          value={user.lastName}
           label="Last Name"
           name="lastName"
+          register={register}
+          errors={errors}
+          validationSchema={{
+            required: "Last name is required",
+          }}
           placeholder="Enter last name"
           type="text"
         />
       </div>
       {/* email */}
-      <div className="flex min-w-full">
+      <div className="flex min-w-full ">
         <CustomInput
-          key={3}
           label="Email Address"
           name="email"
-          value={user.email}
-          onChange={handleChange}
+          errors={errors}
+          register={register}
+          validationSchema={{
+            required: "Email is required",
+            pattern: {
+              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+              message: "Invalid Email address",
+            },
+          }}
           placeholder="Enter your email address"
           type="email"
         />
@@ -104,26 +115,38 @@ const SignupForm = () => {
       {/* pass and cp */}
       <div className="flex gap-5">
         <CustomInput
-          key={4}
           label="Password"
-          value={user.password}
-          onChange={handleChange}
+          errors={errors}
+          register={register}
+          validationSchema={{
+            required: "Password is required",
+            minLength: {
+              value: 6,
+              message: "Atleast 6 characters",
+            },
+          }}
           name="password"
           placeholder="Password"
           type="password"
         />
         <CustomInput
-          key={5}
           label="Confirm Password"
-          onChange={handleChange}
-          value={user.confirmPassword}
           name="confirmPassword"
+          errors={errors}
+          register={register}
+          validationSchema={{
+            required: "Confirm password is required",
+            minLength: {
+              value: 6,
+              message: "",
+            },
+          }}
           placeholder="Confirm Password"
           type="password"
         />
       </div>
       <button
-        onClick={handleSubmit}
+        onClick={handleSubmit(onSubmit)}
         className=" bg-yellow-50  mx-auto w-full  py-2 my-8 rounded-md  font-semibold text-richblack-800"
       >
         CREATE ACCOUNT
