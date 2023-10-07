@@ -10,6 +10,7 @@ import VerifyOTP from "./pages/VerifyOTP";
 import Footer from "src/components/footer/Footer";
 
 import { useSelector } from "react-redux";
+import ContactUs from "./pages/ContactUs";
 const App = () => {
   const loading = useSelector((state) => state.authReducer.loading);
   return (
@@ -29,6 +30,7 @@ const App = () => {
           <Route path="/reset-password/:id" element={<UpdatePassword />} />
           <Route path="/verify-otp" element={<VerifyOTP />} />
           <Route path="/about" element={<About />} />
+          <Route path="/contact-us" element={<ContactUs />} />
         </Routes>
       )}
       <Footer />

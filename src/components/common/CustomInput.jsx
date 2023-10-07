@@ -15,7 +15,7 @@ const CustomInput = ({
 
   return (
     <div className="text-white w-full flex my-3 flex-col relative">
-      <label className="text-white mb-2" htmlFor="Email">
+      <label className="text-white mb-2 font-semibold" htmlFor="Email">
         {label} <sup className="text-red-700">*</sup>
       </label>
       <div className="relative">

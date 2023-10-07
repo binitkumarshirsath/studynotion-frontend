@@ -55,3 +55,11 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+/* style for input field */
+input.PhoneInputInput {
+  background-color: #2c333f;
+  color: #dbddea;
+  margin-right: 10px;
+  padding-left: 10px;
+}

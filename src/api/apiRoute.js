@@ -16,6 +16,11 @@ const categoryRoutes = {
   getAllCategories: "/course/all-categories",
 };
 
+// contact us api
+const contactUs = {
+  contactUs: "/contact-us",
+};
+
 export const apiRoutes = {
   // auth routes
   ...authRoutes,
@@ -25,4 +30,7 @@ export const apiRoutes = {
 
   // course -> category routes
   ...categoryRoutes,
+
+  //contact us route
+  ...contactUs,
 };
