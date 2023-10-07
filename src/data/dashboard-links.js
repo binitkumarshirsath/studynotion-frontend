@@ -36,7 +36,6 @@ export const sidebarLinks = [
   },
   {
     id: 6,
-    id: 7,
     name: "Cart",
     path: "/dashboard/cart",
     type: ACCOUNT_TYPE.STUDENT,

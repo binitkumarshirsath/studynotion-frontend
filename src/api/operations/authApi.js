@@ -71,6 +71,7 @@ export const login = (params, navigate) => {
       const name = user.firstName + user.lastName;
       const image = user.image;
       const role = user.accountType;
+      console.log(role);
       localStorage.setItem("token", JSON.stringify(data.token));
       //update state after login
       dispatch(setAuth({ token: data.token }));
@@ -81,7 +82,7 @@ export const login = (params, navigate) => {
           role,
         })
       );
-      localStorage.setItem("user", JSON.stringify({ name, image }));
+      localStorage.setItem("user", JSON.stringify({ name, image, role }));
       toast.success("User logged in successfully.");
       navigate("/dashboard/user");
     } catch (error) {

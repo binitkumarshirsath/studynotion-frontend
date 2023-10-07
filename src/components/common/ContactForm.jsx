@@ -15,8 +15,9 @@ const ContactForm = () => {
 
   const dispatch = useDispatch();
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data, e) => {
     try {
+      e.preventDefault();
       dispatch(contactUs(data));
     } catch (error) {
       console.log(error);

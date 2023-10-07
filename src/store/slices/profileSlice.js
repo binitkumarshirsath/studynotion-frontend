@@ -20,7 +20,7 @@ const profileSlice = createSlice({
         (state.role = action.payload.role);
     },
     logout: (state) => {
-      (state.name = null)((state.image = null));
+      (state.image = null), (state.role = null), (state.role = null);
     },
   },
 });

@@ -52,7 +52,10 @@ const Dropbar = () => {
       </div>
       {open && (
         <div className="flex absolute text-start right-0 translate-x-7 bg-richblack-800 text-base transition-all duration-200 text-richblack-50  p-2 top-0 translate-y-11 flex-col gap-2 rounded-md">
-          <Link to={"/dashboard"} className="flex gap-2 items-center p-2">
+          <Link
+            to={"/dashboard/my-profile"}
+            className="flex gap-2 items-center p-2"
+          >
             <MdOutlineSpaceDashboard />
             Dashboard
           </Link>
