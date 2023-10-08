@@ -7,7 +7,7 @@ const Dashboard = () => {
         <SideBar />
       </div>
 
-      <div className="w-10/12">
+      <div className="w-10/12 flex-wrap min-h-full">
         <Outlet />
       </div>
     </div>

@@ -16,7 +16,7 @@ axiosInstance.interceptors.request.use(
   async (config) => {
     const token = getToken();
     if (token) {
-      config.headers.Authorization = "Raju";
+      config.headers.Authorization = token;
     }
     return config;
   },

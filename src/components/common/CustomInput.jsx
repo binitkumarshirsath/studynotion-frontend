@@ -24,7 +24,6 @@ const CustomInput = ({
           name={name}
           type={showPassword ? "text" : type}
           placeholder={placeholder}
-          required
           {...register(name, validationSchema)}
           className="text-richblack-25 w-full font-montserrat px-2 rounded-md bg-richblack-700 shadow-sm shadow-richblack-200 py-2"
         />

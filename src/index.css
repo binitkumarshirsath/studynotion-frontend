@@ -63,3 +63,8 @@ input.PhoneInputInput {
   margin-right: 10px;
   padding-left: 10px;
 }
+
+/* image circle */
+.masked-circle {
+  mask-image: radial-gradient(circle, black 100%, transparent 0);
+}

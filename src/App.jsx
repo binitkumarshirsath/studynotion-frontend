@@ -13,20 +13,22 @@ import { useSelector } from "react-redux";
 import ContactUs from "./pages/ContactUs";
 import Error from "./pages/Error";
 import OpenRoute from "./utils/OpenRoute";
-import Dashboard from "./pages/Dashboard";
+import Dashboard from "src/pages/Dashboard/Dashboard";
 import PrivateRoute from "./utils/PrivateRoute";
 import EnrolledCourses from "./components/dashboard/EnrolledCourses";
 import MyProfile from "./components/dashboard/MyProfile";
 import Cart from "./components/dashboard/Cart";
 import Settings from "./components/dashboard/Settings";
-
+import store from "./store/store";
 const App = () => {
+  console.log(store.getState().profileReducer);
   const loading = useSelector((state) => state.authReducer.loading);
+  const profLoading = useSelector((state) => state.profileReducer.loading);
   return (
-    <div className="h-auto w-full flex flex-col">
+    <div className="h-full w-full flex flex-col">
       <Navbar />
       {/* loader */}
-      {loading ? (
+      {loading || profLoading ? (
         <div className="bg-richblack-700 h-[calc(100vh-56px)] flex justify-center items-center">
           <div className="custom-loader h-full"></div>
         </div>

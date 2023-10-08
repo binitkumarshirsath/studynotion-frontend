@@ -72,7 +72,8 @@ export const login = (params, navigate) => {
       const name = user.firstName + user.lastName;
       const image = user.image;
       const role = user.accountType;
-      console.log(role);
+      const email = user.email;
+
       localStorage.setItem("token", JSON.stringify(data.token));
       //update state after login
       dispatch(setAuth({ token: data.token }));
@@ -81,9 +82,13 @@ export const login = (params, navigate) => {
           name,
           image,
           role,
+          email,
         })
       );
-      localStorage.setItem("user", JSON.stringify({ name, image, role }));
+      localStorage.setItem(
+        "user",
+        JSON.stringify({ name, image, role, email })
+      );
       toast.success("User logged in successfully.");
       navigate("/dashboard/user");
     } catch (error) {
@@ -103,6 +108,7 @@ export const logout = async (navigate, dispatch) => {
       name: null,
       image: null,
       role: null,
+      email: null,
     })
   );
   dispatch(setAuth({ token: null }));

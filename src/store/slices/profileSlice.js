@@ -8,6 +8,8 @@ const initialState = {
   name: user?.name || null,
   image: user?.image || null,
   role: user?.role || null,
+  email: user?.email || null,
+  loading: false,
 };
 
 const profileSlice = createSlice({
@@ -17,13 +19,20 @@ const profileSlice = createSlice({
     setUser: (state, action) => {
       (state.name = action.payload.name),
         (state.image = action.payload.image),
-        (state.role = action.payload.role);
+        (state.role = action.payload.role),
+        (state.email = action.payload.email);
     },
     logout: (state) => {
-      (state.image = null), (state.role = null), (state.role = null);
+      (state.image = null),
+        (state.role = null),
+        (state.role = null),
+        (state.email = null);
+    },
+    setProfileLoading: (state, action) => {
+      state.loading = action.payload.loading;
     },
   },
 });
 
-export const { setUser, logout } = profileSlice.actions;
+export const { setUser, setProfileLoading, logout } = profileSlice.actions;
 export default profileSlice.reducer;

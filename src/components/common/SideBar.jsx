@@ -17,9 +17,9 @@ const SideBar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className=" bg-richblack-800 h-[calc(100vh-54px)] max-w-[200px] min-w-[200px] flex flex-col">
+    <div className=" bg-richblack-800 min-h-[calc(100vh-54px)] h-full  min-w-[200px] flex flex-col">
       {/* Before  border wale links */}
-      <div className="flex flex-col mt-6 mb-6  ">
+      <div className="flex flex-col mt-12 mb-6  ">
         {sidebarLinks.map((item) => {
           // if item.type doesnt exists , it means its for everyone
           if (item.type && item.type !== role) {

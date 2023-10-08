@@ -4,36 +4,6 @@ import { PiChatsBold } from "react-icons/pi";
 import { BsGlobeAmericas } from "react-icons/bs";
 import { FiPhoneCall } from "react-icons/fi";
 
-const contactUsData = [
-  {
-    heading: (
-      <div>
-        <PiChatsBold /> Chat on us
-      </div>
-    ),
-    message: "Our friendly team is here to help.",
-    info: "princevinitkumar007@gmail.com",
-  },
-  {
-    heading: (
-      <div>
-        <BsGlobeAmericas /> Visit us
-      </div>
-    ),
-    message: "Come and say hello at our office HQ..",
-    info: "Mars ,Thane Maharashtra 400069",
-  },
-  {
-    heading: (
-      <div>
-        <FiPhoneCall /> Call us
-      </div>
-    ),
-    message: "Mon - Fri From 10am to 4pm.",
-    info: "+91 9111 222 333",
-  },
-];
-
 const ContactUs = () => {
   return (
     <div className="h-auto bg-richblack-900">
