@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 
 const SidebarItem = ({ item }) => {
   //get the icon
-  const Icon = Icons[item.icon];
+  const Icon = Icons[item?.icon];
   const location = useLocation();
   const isCurrentPath = (data) => {
     return location.pathname === data;

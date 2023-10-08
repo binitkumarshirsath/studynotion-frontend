@@ -18,6 +18,7 @@ import PrivateRoute from "./utils/PrivateRoute";
 import EnrolledCourses from "./components/dashboard/EnrolledCourses";
 import MyProfile from "./components/dashboard/MyProfile";
 import Cart from "./components/dashboard/Cart";
+import Settings from "./components/dashboard/Settings";
 
 const App = () => {
   const loading = useSelector((state) => state.authReducer.loading);
@@ -62,6 +63,7 @@ const App = () => {
               element={<EnrolledCourses />}
             />
             <Route path="dashboard/cart" element={<Cart />} />
+            <Route path="dashboard/settings" element={<Settings />} />
           </Route>
           <Route path="/about" element={<About />} />
           <Route path="/contact-us" element={<ContactUs />} />

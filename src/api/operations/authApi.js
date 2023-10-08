@@ -7,7 +7,8 @@ import axiosInstance from "..";
 
 import { setAuth, setLoading } from "src/store/slices/authSlice";
 import { setUser } from "src/store/slices/profileSlice";
-// import store from "src/store/store";
+
+// https://redux.js.org/understanding/thinking-in-redux/glossary#async-action
 
 //otp function
 export const sendotp = async (params, navigate, dispatch) => {

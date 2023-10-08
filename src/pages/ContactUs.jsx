@@ -44,11 +44,11 @@ const ContactUs = () => {
               <div className="flex flex-col pt-10 px-10 ">
                 <div className="flex gap-4 items-center">
                   <PiChatsBold className="flex" size={30} />{" "}
-                  <span className="font-semibold font-inter text-lg">
+                  <span className="font-semibold font-poppins text-lg">
                     Chat on us
                   </span>
                 </div>
-                <div className="mt-2 text-richblack-25 font-mono">
+                <div className="mt-2 text-richblack-25 font-poppins">
                   Our friendly team is here to help.
                   <br />
                   princevinitkumar007@gmail.com
@@ -58,11 +58,11 @@ const ContactUs = () => {
               <div className="flex flex-col pt-10 px-10 ">
                 <div className="flex gap-4 items-center">
                   <BsGlobeAmericas className="flex" size={30} />{" "}
-                  <span className="font-semibold font-inter text-lg">
+                  <span className="font-semibold font-poppins text-lg">
                     Come , Visit us
                   </span>
                 </div>
-                <div className="mt-2 text-richblack-25 font-mono">
+                <div className="mt-2 text-richblack-25 font-poppins">
                   Come and say hello at our office HQ.
                   <br />
                   BiniTech Thane, Maharashtra 400069
@@ -72,11 +72,11 @@ const ContactUs = () => {
               <div className="flex flex-col pt-10 px-10 ">
                 <div className="flex gap-4 items-center">
                   <FiPhoneCall className="flex" size={30} />{" "}
-                  <span className="font-semibold font-inter text-lg">
+                  <span className="font-semibold font-poppins text-lg">
                     Call us
                   </span>
                 </div>
-                <div className="mt-2 text-richblack-25 font-mono">
+                <div className="mt-2 text-richblack-25 font-poppins">
                   Mon - Fri From 10am to 4pm
                   <br />
                   +91 9111 2111 432

@@ -1,13 +1,24 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { sidebarLinks } from "src/data/dashboard-links";
 import SidebarItem from "../sidebar/SidebarItem";
+import { FiLogOut } from "react-icons/fi";
+import Modal from "./Modal";
+import { useState } from "react";
+import { logout } from "src/api/operations/authApi";
+import { useNavigate } from "react-router-dom";
 
 const SideBar = () => {
   const user = useSelector((state) => state.profileReducer);
   const role = user.role;
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <div className=" bg-richblack-800 h-[calc(100vh-54px)] max-w-[200px] min-w-[200px] flex flex-col">
-      {/* Before the border wale links */}
+      {/* Before  border wale links */}
       <div className="flex flex-col mt-6 mb-6  ">
         {sidebarLinks.map((item) => {
           // if item.type doesnt exists , it means its for everyone
@@ -20,6 +31,35 @@ const SideBar = () => {
       {/* border */}
       <div className="border w-10/12 mx-auto border-richblack-500 mb-4"></div>
       {/* Setting and logout */}
+      <SidebarItem
+        item={{
+          name: "Settings",
+          path: "/dashboard/settings",
+          icon: "VscSettingsGear",
+        }}
+      />
+      {/* Logut --> Modal */}
+      <div
+        className={`text-richblack-25 font-inter flex  py-2 gap-2 pl-5 items-center`}
+        onClick={() => setIsOpen(true)}
+      >
+        <div>
+          <FiLogOut />
+        </div>
+        <div>Logout</div>
+      </div>
+      {isOpen && (
+        <Modal
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          heading={"Confirm Logout ?"}
+          text={"You will be logged out of your account."}
+          btn1={{
+            text: "Logout",
+            onClick: () => logout(navigate, dispatch),
+          }}
+        />
+      )}
     </div>
   );
 };
