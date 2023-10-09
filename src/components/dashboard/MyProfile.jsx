@@ -1,9 +1,30 @@
-import { useSelector } from "react-redux";
 import EditButton from "../common/EditButton";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { getUserDetails } from "src/api/operations/profileApi";
 
 const MyProfile = () => {
   const user = useSelector((state) => state.profileReducer);
-  const [firstName, lastName] = user?.name?.split(" ") || [];
+
+  const [userDetails, setUserDetails] = useState(null);
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const response = await getUserDetails();
+      const obj = {
+        firstName: response?.firstName,
+        lastName: response?.lastName,
+        about: response?.additionalDetails?.about,
+        dob: response?.additionalDetails?.dateOfBirth,
+        gender: response?.additionalDetails?.gender,
+        phone: response?.additionalDetails?.contactNumber,
+      };
+      setUserDetails(() => {
+        return obj;
+      });
+    };
+    fetchUserData();
+  }, []);
+
   return (
     <div className="bg-richblack-900 w-full h-full">
       <div className="flex flex-col w-10/12 mx-auto  h-full">
@@ -39,7 +60,7 @@ const MyProfile = () => {
               About
             </div>
             <div className="text-richblack-100 text-sm">
-              Write soemthing about yourself
+              {userDetails?.about || "Write something about yourself"}
             </div>
           </div>
           <div>
@@ -64,7 +85,7 @@ const MyProfile = () => {
               <div>
                 <p className="mb-2 text-sm text-richblack-100">First Name</p>
                 <p className="text-sm font-medium text-richblack-5">
-                  {firstName}
+                  {userDetails?.firstName}
                 </p>
               </div>
               <div>
@@ -76,7 +97,7 @@ const MyProfile = () => {
               <div>
                 <p className="mb-2 text-sm text-richblack-100">Gender</p>
                 <p className="text-sm font-medium text-richblack-5">
-                  {user?.additionalDetails?.gender ?? "Add Gender"}
+                  {userDetails?.gender ?? "Add Gender"}
                 </p>
               </div>
             </div>
@@ -85,20 +106,21 @@ const MyProfile = () => {
               <div>
                 <p className="mb-2 text-sm text-richblack-100">Last Name</p>
                 <p className="text-sm font-medium text-richblack-5">
-                  {lastName}
+                  {userDetails?.lastName ?? ""}
                 </p>
               </div>
               <div>
                 <p className="mb-2 text-sm text-richblack-100">Phone Number</p>
                 <p className="text-sm font-medium text-richblack-5">
-                  {user?.additionalDetails?.contactNumber ??
-                    "Add Contact Number"}
+                  {userDetails?.phone
+                    ? "+" + userDetails.phone
+                    : "Add Contact Number"}
                 </p>
               </div>
               <div>
                 <p className="mb-2 text-sm text-richblack-100">Date of Birth</p>
                 <p className="text-sm font-medium text-richblack-5">
-                  {user?.additionalDetails?.dateOfBirth ?? "Add Date of Birth"}
+                  {userDetails?.dob ?? "Add Date of Birth"}
                 </p>
               </div>
             </div>

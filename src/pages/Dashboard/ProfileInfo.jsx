@@ -2,13 +2,39 @@ import CustomInput from "src/components/common/CustomInput";
 import { useForm } from "react-hook-form";
 import PhoneInputWithCountry from "react-phone-number-input/react-hook-form";
 import "react-phone-number-input/style.css";
+import { useDispatch } from "react-redux";
+import { getUserDetails, updateProfile } from "src/api/operations/profileApi";
+import { useEffect, useState } from "react";
 
 const ProfileInfo = () => {
   const { errors, handleSubmit, register, control } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const dispatch = useDispatch();
+
+  const onSubmit = async (data, e) => {
+    e.preventDefault();
+    dispatch(updateProfile(data));
   };
+
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const response = await getUserDetails();
+      const obj = {
+        firstName: response?.firstName,
+        lastName: response?.lastName,
+        about: response?.additionalDetails?.about,
+        dob: response?.additionalDetails?.dateOfBirth,
+        gender: response?.additionalDetails?.gender,
+        phone: response?.additionalDetails?.contactNumber,
+      };
+      setUser(() => {
+        return obj;
+      });
+    };
+    fetchUserData();
+  }, []);
 
   return (
     <div className="bg-richblack-800 relative mb-10 rounded-lg border  gap-10 flex-col flex pl-10 pr-10 border-richblack-600 h-auto w-10/12">
@@ -25,6 +51,7 @@ const ProfileInfo = () => {
             label="First Name"
             name="firstName"
             type="text"
+            placeholder={user?.firstName}
             register={register}
             validationSchema={{
               required: "First Name is required",
@@ -50,6 +77,7 @@ const ProfileInfo = () => {
                 name="phone"
                 control={control}
                 defaultCountry="IN"
+                // defaultValue={`${user?.phone}`}
                 className="bg-richblack-700 rounded-md  box-border   pl-3 py-2"
                 rules={{ required: "true" }}
               />
@@ -63,6 +91,7 @@ const ProfileInfo = () => {
             key={4}
             label="Last Name"
             name="lastName"
+            placeholder={user?.lastName}
             type="text"
             register={register}
             validationSchema={{
@@ -75,6 +104,7 @@ const ProfileInfo = () => {
               Gender <sup className="text-red-700">*</sup>
             </label>
             <select
+              defaultValue={user?.gender}
               {...register("gender")}
               className="text-richblack-25 w-full mt-2 font-montserrat px-2 rounded-md bg-richblack-700 h-11 shadow-sm shadow-richblack-200 py-2"
             >
@@ -87,6 +117,7 @@ const ProfileInfo = () => {
             errors={errors}
             key={6}
             label="About"
+            placeholder={user?.about}
             name="about"
             type="text"
             register={register}
@@ -94,7 +125,6 @@ const ProfileInfo = () => {
         </div>
       </div>
       <button
-        type="submit"
         onClick={handleSubmit(onSubmit)}
         className="bg-yellow-50 absolute translate-y-16 px-1 py-2 text-lg  right-0 bottom-0 text-richblack-800 w-1/12 rounded-md font-semibold "
       >

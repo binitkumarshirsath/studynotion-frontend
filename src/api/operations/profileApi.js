@@ -7,6 +7,7 @@ import { setUser } from "src/store/slices/profileSlice";
 import { setProfileLoading } from "src/store/slices/profileSlice";
 import store from "src/store/store";
 
+// ask backend to generate token and send to mail
 export const resetPasswordToken = (email) => {
   return async (dispatch) => {
     try {
@@ -23,6 +24,7 @@ export const resetPasswordToken = (email) => {
   };
 };
 
+// reset password
 export const resetPassword = (details, navigate) => {
   return async (dispatch) => {
     dispatch(setLoading({ loading: true }));
@@ -41,8 +43,18 @@ export const resetPassword = (details, navigate) => {
   };
 };
 
+//get user details
+export const getUserDetails = async () => {
+  try {
+    const { data } = await axiosInstance.get(apiRoutes.getUserDetails);
+    return data?.userDetails;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 // never write async params , iykyk
-export const updateProfileImage = (params) => {
+export const updateProfile = (params) => {
   return async (dispatch) => {
     dispatch(setProfileLoading({ loading: true }));
     try {
@@ -56,16 +68,34 @@ export const updateProfileImage = (params) => {
         params,
         config
       );
-
+      console.log(data);
       const image = data?.updatedUser?.image;
       const user = store.getState().profileReducer;
       dispatch(setUser({ ...user, image: image }));
 
       localStorage.setItem("user", JSON.stringify({ ...user, image }));
-      toast.success("Profile image updated successfully");
     } catch (error) {
       console.log(error);
-      toast.error("Error while updating profile image.");
+    } finally {
+      dispatch(setProfileLoading({ loading: false }));
+    }
+  };
+};
+
+export const changePassword = (params) => {
+  return async (dispatch) => {
+    try {
+      dispatch(setProfileLoading({ loading: true }));
+      const { data } = await axiosInstance.post(
+        apiRoutes.changePassword,
+        params
+      );
+      console.log(data);
+      toast.success("Password updated successfully");
+      return data;
+    } catch (error) {
+      console.log(error);
+      toast.error("Error while changing password");
     } finally {
       dispatch(setProfileLoading({ loading: false }));
     }

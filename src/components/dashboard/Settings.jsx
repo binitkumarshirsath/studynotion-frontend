@@ -4,7 +4,8 @@ import { useForm } from "react-hook-form";
 import "react-phone-number-input/style.css";
 // import { updateProfileImage } from "src/api/operations/profileApi";
 import ProfileInfo from "src/pages/Dashboard/ProfileInfo";
-import { updateProfileImage } from "src/api/operations/profileApi";
+import { updateProfile } from "src/api/operations/profileApi";
+import ChangePassword from "./ChangePassword";
 const Settings = () => {
   const { register } = useForm();
 
@@ -27,7 +28,7 @@ const Settings = () => {
     const formData = new FormData();
     formData.append("image", imageToUpload);
     try {
-      dispatch(updateProfileImage(formData));
+      dispatch(updateProfile(formData));
     } catch (error) {
       console.log(error);
     }
@@ -42,13 +43,13 @@ const Settings = () => {
         </div>
 
         {/* 2nd div photo edit */}
-        <div className="bg-richblack-800 mb-10 rounded-lg border items-center gap-10 flex pl-10 pr-10 border-richblack-600 h-28 w-10/12">
+        <div className="bg-richblack-800 mb-10 h-full rounded-lg border items-center gap-10 flex pl-10 pr-10 border-richblack-600 w-10/12">
           <img
             src={imagePreview}
             alt="user-photu"
             className="rounded-full max-w-[60px] min-w-[60px] max-h-[60px] min-h-[60px  ] object-contain "
           />
-          <div className="flex flex-col text-white justify-evenly">
+          <div className="flex flex-col my-4 text-white justify-evenly">
             <div className="font-semibold">Change Profile Picture</div>
             <div className="flex gap-5 mt-4 items-center">
               <div className="flex items-center">
@@ -81,6 +82,7 @@ const Settings = () => {
         {/* Profile info wala div */}
         <ProfileInfo />
         {/* password change section */}
+        <ChangePassword />
       </div>
     </div>
   );

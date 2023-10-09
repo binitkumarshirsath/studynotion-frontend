@@ -12,7 +12,6 @@ const CustomInput = ({
   validationSchema,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
-
   return (
     <div className="text-white w-full flex my-3 flex-col relative">
       <label className="text-white mb-2 font-semibold" htmlFor="Email">

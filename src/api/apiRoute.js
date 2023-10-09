@@ -9,7 +9,9 @@ const authRoutes = {
 const profileRoutes = {
   sendToken: "/profile/password-token",
   resetPassword: "/profile/reset-password",
+  getUserDetails: "profile/user-details",
   updateProfile: "/profile/update-user",
+  changePassword: "/profile/change-password",
 };
 
 // course - category routes

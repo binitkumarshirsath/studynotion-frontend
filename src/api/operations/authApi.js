@@ -69,7 +69,7 @@ export const login = (params, navigate) => {
     try {
       const { data } = await axiosInstance.post(apiRoutes.login, params);
       const user = data.user;
-      const name = user.firstName + user.lastName;
+      const name = user.firstName + " " + user.lastName;
       const image = user.image;
       const role = user.accountType;
       const email = user.email;

@@ -9,6 +9,9 @@ const initialState = {
   image: user?.image || null,
   role: user?.role || null,
   email: user?.email || null,
+  phone: user?.phome || null,
+  gender: user?.gender || null,
+  dob: user?.dob || null,
   loading: false,
 };
 
@@ -20,7 +23,10 @@ const profileSlice = createSlice({
       (state.name = action.payload.name),
         (state.image = action.payload.image),
         (state.role = action.payload.role),
-        (state.email = action.payload.email);
+        (state.email = action.payload.email),
+        (state.dob = action.payload.dob),
+        (state.gender = action.payload.gender),
+        (state.phone = action.payload.phone);
     },
     logout: (state) => {
       (state.image = null),

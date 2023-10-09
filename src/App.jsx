@@ -19,9 +19,8 @@ import EnrolledCourses from "./components/dashboard/EnrolledCourses";
 import MyProfile from "./components/dashboard/MyProfile";
 import Cart from "./components/dashboard/Cart";
 import Settings from "./components/dashboard/Settings";
-import store from "./store/store";
+
 const App = () => {
-  console.log(store.getState().profileReducer);
   const loading = useSelector((state) => state.authReducer.loading);
   const profLoading = useSelector((state) => state.profileReducer.loading);
   return (
