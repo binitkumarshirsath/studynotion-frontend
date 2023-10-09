@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently -n \"server,client\" -c \"bgBlue,bgYellow\" \"npm run server\" \"npm run vite\"",
+    "dev": "concurrently -n \"server,client\" -c \"bgBlue,bgYellow\" \"npm run server\" \"npm run vite -- --host\"",
     "server": "cd ../server && npm run dev",
     "vite": "vite",
     "build": "vite build",

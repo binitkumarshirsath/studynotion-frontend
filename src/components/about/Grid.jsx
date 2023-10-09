@@ -45,15 +45,15 @@ const GridData = [
 
 const Grid = () => {
   return (
-    <div className="w-full h-full pb-10  bg-richblack-900">
-      <div className="w-10/12 mt-20 mx-auto grid grid-cols-4">
+    <div className="w-full h-full   pb-10  bg-richblack-900">
+      <div className="w-10/12 mt-20 mx-auto grid lg:grid-cols-4 grid-cols-1">
         {GridData.map((item, index) => {
           return (
             <div
               key={index}
-              className={`${index === 0 && "col-span-2 bg-richblack-900"}
+              className={`${index === 0 && "lg:col-span-2 bg-richblack-900"}
                 ${index % 2 !== 0 ? "bg-richblack-600" : "bg-richblack-800"}
-                ${index === 3 && "col-start-2"}
+                ${index === 3 && "hidden lg:col-start-2"}
 
             `}
             >
@@ -67,7 +67,7 @@ const Grid = () => {
                   <div className=" text-richblack-100 font-base ">
                     {item.description}
                   </div>
-                  <div className="flex">
+                  <div className="flex mb-8">
                     <CTAButton
                       text="Learn More"
                       linkTo="/signup"
@@ -78,7 +78,7 @@ const Grid = () => {
                   </div>
                 </div>
               ) : (
-                <div className="flex flex-col h-64 gap-5 text-white py-4 px-6">
+                <div className="flex flex-col mt-8  gap-5 text-white py-4 px-6">
                   <div className="text-white text-2xl font-bold mb-6 ">
                     {item.heading}
                   </div>

@@ -12,7 +12,7 @@ const About = () => {
   return (
     <div className="flex h-full flex-1 flex-col w-full">
       {/* section 1 */}
-      <div className="bg-richblack-700  flex flex-col items-center h-full w-full">
+      <div className="bg-richblack-700 pb-20  flex flex-col items-center h-full w-full">
         <div className="text-4xl relative text-center font-bold text-white lg:w-[80%] ">
           <div className="mt-14">
             Driving Innovation in Online Education for a <br />
@@ -25,16 +25,28 @@ const About = () => {
             nurturing a vibrant learning community.`}
           </div>
           {/* image about us */}
-          <div className="lg:flex justify-between absolute -bottom-36 w-full">
-            <img src={Image1} alt="about-photu1" />
-            <img src={Image2} alt="about-photu2" />
-            <img src={Image3} alt="about-photu3" />
+          <div className="absolute bottom-0 left-[50%] grid w-[100%] translate-x-[-50%] lg:translate-y-40 translate-y-32 grid-cols-3 gap-3 lg:gap-5">
+            <img
+              src={Image1}
+              alt="about-photu1"
+              className="object-contain w-full"
+            />
+            <img
+              src={Image2}
+              alt="about-photu2"
+              className="object-contain w-full"
+            />
+            <img
+              src={Image3}
+              alt="about-photu3"
+              className="object-contain w-full"
+            />
           </div>
         </div>
       </div>
       {/* section 2 */}
       <div className="bg-richblack-900 border-b border-richblack-500   pb-20 h-full  flex flex-col justify-center items-center">
-        <div className="mt-52 lg:w-10/12 mx-auto text-center leading-relaxed text-white text-4xl font-bold">
+        <div className="lg:mt-52 mt-32 lg:w-10/12 mx-auto text-center leading-relaxed text-white text-2xl lg:text-4xl font-bold">
           We are passionate about revolutionizing the way we learn. Our
           innovative platform <HighlightText>combines technology</HighlightText>{" "}
           ,{" "}
@@ -49,7 +61,7 @@ const About = () => {
       </div>
       {/* section 3 */}
       <div className="bg-richblack-900 h-auto w-full flex justify-center items-center">
-        <div className="w-10/12 h-full flex justify-between items-center mt-12 gap-20">
+        <div className="w-10/12 h-full lg:flex justify-between items-center mt-12 gap-20">
           <div className=" h-full w-full">
             <div className="bg-gradient-to-br font-bold from-[#833AB4] pb-4 via-[#FD1D1D] to-[#FCB045] bg-clip-text text-4xl font-poppins text-transparent lg:w-[70%] mb-10">
               Our Founding Story
@@ -82,7 +94,7 @@ const About = () => {
       {/* two textboxes */}
       <div className="w-full bg-richblack-900 h-full ">
         <div className="w-10/12 mx-auto flex items-center">
-          <div className="w-full flex justify-between items-center mt-12 gap-20">
+          <div className="w-full lg:flex justify-between items-center mt-12 gap-20">
             <div className="w-full h-full flex flex-col gap-y-11">
               <div className="bg-gradient-to-b from-[#FF512F] to-[#F09819] bg-clip-text text-4xl font-bold text-transparent lg:w-[70%] ">
                 Our Vision
@@ -135,7 +147,7 @@ const About = () => {
           ].map((item, index) => {
             return (
               <div key={index} className="text-center flex flex-col gap-1">
-                <div className="text-richblack-5 font-bold text-3xl">
+                <div className="text-richblack-5 font-bold lg:text-3xl text-base">
                   {item.heading}
                 </div>
                 <div className="text-richblack-200 font-semibold text-base">
@@ -150,7 +162,7 @@ const About = () => {
       <Grid />
       {/* Contact form */}
       <div className="w-full bg-richblack-900">
-        <div className="w-2/6 mx-auto">
+        <div className="lg:w-2/6 w-10/12 mx-auto">
           <ContactForm />
         </div>
       </div>
