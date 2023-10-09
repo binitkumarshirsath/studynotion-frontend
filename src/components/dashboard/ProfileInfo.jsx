@@ -37,7 +37,7 @@ const ProfileInfo = () => {
   }, []);
 
   return (
-    <div className="bg-richblack-800 relative mb-10 rounded-lg border  gap-10 flex-col flex pl-10 pr-10 border-richblack-600 h-auto w-10/12">
+    <div className="bg-richblack-800 relative mb-10 pb-10 rounded-lg border  gap-10 flex-col flex pl-10 pr-10 border-richblack-600 h-auto w-10/12">
       <div className="text-white font-mono text-xl mt-6 font-semibold">
         PROFILE INFORMATION
       </div>

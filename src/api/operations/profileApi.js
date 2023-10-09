@@ -1,7 +1,7 @@
 import toast from "react-hot-toast";
 import axiosInstance from "..";
 import { apiRoutes } from "../apiRoute";
-import { setIsMailSent } from "src/store/slices/authSlice";
+import { setAuth, setIsMailSent } from "src/store/slices/authSlice";
 import { setLoading } from "src/store/slices/authSlice";
 import { setUser } from "src/store/slices/profileSlice";
 import { setProfileLoading } from "src/store/slices/profileSlice";
@@ -82,6 +82,7 @@ export const updateProfile = (params) => {
   };
 };
 
+// change pass when logged in
 export const changePassword = (params) => {
   return async (dispatch) => {
     try {
@@ -98,6 +99,38 @@ export const changePassword = (params) => {
       toast.error("Error while changing password");
     } finally {
       dispatch(setProfileLoading({ loading: false }));
+    }
+  };
+};
+
+// delete account
+export const deleteAccount = (navigate) => {
+  return async (dispatch) => {
+    try {
+      dispatch(setLoading({ loading: true }));
+      const { data } = await axiosInstance.delete(apiRoutes.deleteAccount);
+      console.log(data);
+      localStorage.removeItem("user");
+      localStorage.removeItem("token");
+      dispatch(
+        setUser({
+          name: null,
+          image: null,
+          role: null,
+          email: null,
+          dob: null,
+          gender: null,
+          phone: null,
+        })
+      );
+      dispatch(setAuth({ token: null }));
+      toast.success("User logged out successfully.");
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+      toast.error("Error while deleting account");
+    } finally {
+      dispatch(setLoading({ loading: false }));
     }
   };
 };

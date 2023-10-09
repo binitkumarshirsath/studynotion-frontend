@@ -3,9 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import "react-phone-number-input/style.css";
 // import { updateProfileImage } from "src/api/operations/profileApi";
-import ProfileInfo from "src/pages/Dashboard/ProfileInfo";
+import ProfileInfo from "src/components/dashboard/ProfileInfo";
 import { updateProfile } from "src/api/operations/profileApi";
 import ChangePassword from "./ChangePassword";
+import { AiOutlineCloudUpload } from "react-icons/ai";
+import DeleteAccount from "./DeleteAccount";
+
 const Settings = () => {
   const { register } = useForm();
 
@@ -72,9 +75,9 @@ const Settings = () => {
               <button
                 type="submit"
                 onClick={handleSubmit}
-                className="bg-yellow-50 cursor-pointer text-base py-1 px-3 font-semibold rounded-md text-richblue-700"
+                className="bg-yellow-100 flex gap-2 border-2 border-yellow-25 items-center cursor-pointer text-base py-1 px-3 font-semibold rounded-md text-richblue-700"
               >
-                UPLOAD
+                UPLOAD <AiOutlineCloudUpload size={24} />
               </button>
             </div>
           </div>
@@ -83,6 +86,8 @@ const Settings = () => {
         <ProfileInfo />
         {/* password change section */}
         <ChangePassword />
+        {/* Delete account */}
+        <DeleteAccount />
       </div>
     </div>
   );

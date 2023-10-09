@@ -12,6 +12,7 @@ const profileRoutes = {
   getUserDetails: "profile/user-details",
   updateProfile: "/profile/update-user",
   changePassword: "/profile/change-password",
+  deleteAccount: "/profile/delete-account",
 };
 
 // course - category routes
