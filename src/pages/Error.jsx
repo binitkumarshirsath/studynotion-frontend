@@ -11,7 +11,7 @@ const Error = () => {
         <CTAButton
           linkTo="/"
           bgColor="bg-yellow-50"
-          icon={<AiOutlineHome />}
+          icon={<AiOutlineHome size={26} />}
           shadowColor="bg-yellow-25"
           text="Back to Homepage"
           textColor="text-richblack-900"

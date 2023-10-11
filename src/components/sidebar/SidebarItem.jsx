@@ -16,7 +16,7 @@ const SidebarItem = ({ item }) => {
         isCurrentPath(item.path)
           ? "bg-yellow-800 border-l-4    border-l-yellow-25"
           : ""
-      } font-inter flex  py-2 gap-2 pl-5 items-center`}
+      } font-inter flex  py-2 gap-2 pl-8 items-center`}
     >
       <div>
         <Icon size={22} />

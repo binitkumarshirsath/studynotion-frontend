@@ -19,10 +19,12 @@ import EnrolledCourses from "./components/dashboard/EnrolledCourses";
 import MyProfile from "./components/dashboard/MyProfile";
 import Cart from "./components/dashboard/Cart";
 import Settings from "./components/dashboard/Settings";
+import AddCourse from "./pages/AddCourse";
 
 const App = () => {
   const loading = useSelector((state) => state.authReducer.loading);
   const profLoading = useSelector((state) => state.profileReducer.loading);
+
   return (
     <div className="h-full w-full flex flex-col">
       <Navbar />
@@ -65,7 +67,9 @@ const App = () => {
             />
             <Route path="dashboard/cart" element={<Cart />} />
             <Route path="dashboard/settings" element={<Settings />} />
+            <Route path="dashboard/add-course" element={<AddCourse />} />
           </Route>
+
           <Route path="/about" element={<About />} />
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="*" element={<Error />} />

@@ -97,7 +97,7 @@ const MyProfile = () => {
               <div>
                 <p className="mb-2 text-sm text-richblack-100">GENDER</p>
                 <p className="text-sm font-medium text-richblack-5">
-                  {userDetails?.gender.toUpperCase() ?? "Add Gender"}
+                  {userDetails?.gender?.toUpperCase() ?? "Add Gender"}
                 </p>
               </div>
             </div>
