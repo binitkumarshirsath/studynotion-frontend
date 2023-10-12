@@ -6,6 +6,7 @@ const CustomInput = ({
   label,
   type,
   name,
+  style,
   placeholder,
   register,
   errors,
@@ -14,7 +15,7 @@ const CustomInput = ({
   const [showPassword, setShowPassword] = useState(false);
   return (
     <div className="text-white w-full flex my-3 flex-col relative">
-      <label className="text-white mb-2 font-semibold" htmlFor="Email">
+      <label className="text-white mb-2 font-semibold" htmlFor={label}>
         {label} <sup className="text-red-700">*</sup>
       </label>
       <div className="relative">
@@ -24,7 +25,9 @@ const CustomInput = ({
           type={showPassword ? "text" : type}
           placeholder={placeholder}
           {...register(name, validationSchema)}
-          className="text-richblack-25 w-full font-montserrat px-2 rounded-md bg-richblack-700 shadow-sm shadow-richblack-200 py-2"
+          className={`text-richblack-25 w-full  font-montserrat ${
+            style && style
+          } px-2 rounded-md bg-richblack-700 shadow-sm shadow-richblack-200 py-2`}
         />
         {type === "password" ? (
           <span
@@ -56,6 +59,7 @@ CustomInput.propTypes = {
   register: PropTypes.any,
   validationSchema: PropTypes.object,
   errors: PropTypes.object,
+  style: PropTypes.string,
 };
 
 export default CustomInput;

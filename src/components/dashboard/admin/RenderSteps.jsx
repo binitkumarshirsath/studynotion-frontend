@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import CourseInfoForm from "./CourseInfoForm";
 
 const RenderSteps = () => {
   const steps = [
@@ -45,10 +46,9 @@ const RenderSteps = () => {
           );
         })}
       </div>
-      <div className="flex justify-between">
-        {steps.map((item, index) => {
-          return <div key={index}>{item.title}</div>;
-        })}
+
+      <div className="mt-10 bg-richblack-800 w-full h-full rounded-lg border border-richblack-600">
+        {step === 1 && <CourseInfoForm />}
       </div>
     </div>
   );
