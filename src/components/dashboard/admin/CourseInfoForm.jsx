@@ -5,18 +5,23 @@ import { useEffect, useState } from "react";
 import axiosInstance from "src/api";
 import { apiRoutes } from "src/api/apiRoute";
 import toast from "react-hot-toast";
-import { AiFillDelete } from "react-icons/ai";
+
 import { GrNext } from "react-icons/gr";
 import Upload from "src/components/dashboard/admin/CourseInfoForm/Upload";
+
+import Labels from "./CourseInfoForm/Labels";
+import { useDispatch } from "react-redux";
+import { createCourse } from "src/api/operations/courseApi";
 
 const CourseInfoForm = () => {
   const {
     register,
     formState: { errors },
-    getValues,
     setValue,
     handleSubmit,
   } = useForm();
+
+  const dispatch = useDispatch();
 
   const [categories, setCategories] = useState([]);
 
@@ -31,25 +36,6 @@ const CourseInfoForm = () => {
     reader.readAsDataURL(file);
   };
 
-  const [tag, setTag] = useState("");
-  const [tagList, setTagList] = useState([]);
-
-  const [requirement, setRequirement] = useState("");
-  const [requirementList, setRequirementList] = useState([]);
-
-  const handleRequirementDelete = (e) => {
-    const newRequirementList = requirementList.filter(
-      (item, index) => index !== e
-    );
-    setRequirementList([...newRequirementList]);
-  };
-
-  const handleRequirementAdd = (e) => {
-    if (e.key === "Enter") {
-      setRequirementList([...requirementList, e.target.value]);
-      setValue("requirement", "");
-    }
-  };
   useEffect(() => {
     const getAllCategories = async () => {
       try {
@@ -63,23 +49,13 @@ const CourseInfoForm = () => {
     getAllCategories();
   }, []);
 
-  const handleTagClick = (e) => {
-    if (e.key === "Enter") {
-      setTagList((prevData) => {
-        return [...prevData, tag];
-      });
-      setTag("");
+  const onSubmit = (data) => {
+    try {
+      dispatch(createCourse(data));
+    } catch (error) {
+      toast.error("Error while creating course");
     }
   };
-
-  const handleDeleteTag = (e) => {
-    const newList = tagList.filter((tagItem, index) => {
-      return index !== e;
-    });
-    setTagList([...newList]);
-  };
-
-  const onSubmit = (data) => console.log(data);
 
   return (
     <div className="pl-10 pt-10 flex flex-col">
@@ -164,43 +140,13 @@ const CourseInfoForm = () => {
           )}
         </div>
         {/* Tags */}
-        <div>
-          <label
-            htmlFor="
-            Course Description"
-            className="text-white mb-2 font-semibold"
-          >
-            Tags <sup className="text-red-500">*</sup>
-          </label>
-          <div className="flex flex-wrap gap-2 mt-2">
-            {tagList.length > 0 &&
-              tagList.map((tagItem, index) => {
-                return (
-                  <div
-                    className="rounded-lg flex items-center gap-2 bg-richblack-600 px-2 py-1"
-                    key={index}
-                  >
-                    {tagItem}
-                    <AiFillDelete onClick={() => handleDeleteTag(index)} />
-                  </div>
-                );
-              })}
-          </div>
-          <input
-            onChange={(e) => setTag(e.target.value)}
-            onKeyDown={handleTagClick}
-            {...register("tag", {
-              required: "Tags are required",
-            })}
-            className="text-richblack-25 mt-3 w-full font-montserrat px-2 rounded-md bg-richblack-700 shadow-sm shadow-richblack-200 py-2"
-            type="text"
-          />
-          {errors && errors.tag && (
-            <span className="error translate-y-1  text-red-500">
-              {errors.tag?.message}
-            </span>
-          )}
-        </div>
+        <Labels
+          register={register}
+          errors={errors}
+          label="Course Tag"
+          setValue={setValue}
+          name="courseTag"
+        />
         {/* thumbnail */}
         <Upload
           register={register}
@@ -242,48 +188,14 @@ const CourseInfoForm = () => {
           )}
         </div>
         {/* requirement / instruction */}
-        <div className="my-4 ">
-          <label
-            htmlFor="
-            Requirement/instrution"
-            className="text-white mb-2  font-semibold"
-          >
-            Requirment/Instruction <sup className="text-red-500">*</sup>
-          </label>
-          <input
-            id="requirement/instruction"
-            name="requiremnt"
-            type="text"
-            onChange={(e) => setRequirement(e.target.value)}
-            onKeyDown={handleRequirementAdd}
-            placeholder="Requirment/Instruction"
-            {...register("requirement", {
-              required: "Requirement/Instruction is required",
-            })}
-            className={`text-richblack-25 w-full  font-montserrat  px-2 rounded-md bg-richblack-700 shadow-sm shadow-richblack-200 py-2`}
+        <div className="mt-4">
+          <Labels
+            register={register}
+            errors={errors}
+            label="Course Requirement/Instruction"
+            setValue={setValue}
+            name="courseRequirment"
           />
-
-          {errors && errors.requirement && (
-            <span className="error translate-y-1  text-red-500">
-              {errors.requirement?.message}
-            </span>
-          )}
-          <div className="flex mt-1 gap-2">
-            {requirementList.length > 0 &&
-              requirementList.map((item, index) => {
-                return (
-                  <div
-                    className="rounded-lg flex items-center gap-2 bg-richblack-600 px-2 py-1"
-                    key={index}
-                  >
-                    {item}
-                    <AiFillDelete
-                      onClick={() => handleRequirementDelete(index)}
-                    />
-                  </div>
-                );
-              })}
-          </div>
         </div>
         <div className="relative my-4">
           <div className="h-20"></div>

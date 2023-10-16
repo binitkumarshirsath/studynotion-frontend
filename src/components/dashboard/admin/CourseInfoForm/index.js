@@ -13,8 +13,7 @@ const CourseInfoForm = () => {
   const {
     register,
     formState: { errors },
-    getValues,
-    setValue,
+
     handleSubmit,
   } = useForm();
 
@@ -62,8 +61,6 @@ const CourseInfoForm = () => {
     });
     setTagList([...newList]);
   };
-
-  const [thumbnailPreview, setThumbnailPreview] = useState(null);
 
   const onSubmit = (data) => console.log(data);
 

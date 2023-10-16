@@ -14,7 +14,6 @@ const Upload = ({
 }) => {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    console.log(file);
     handleChange(file);
   };
 
