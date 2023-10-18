@@ -25,12 +25,20 @@ const contactUs = {
   contactUs: "/contact-us",
 };
 
+// course routes
+const courseRoutes = {
+  createCourse: "/course/create-course",
+};
+
 export const apiRoutes = {
   // auth routes
   ...authRoutes,
 
   //profile routes
   ...profileRoutes,
+
+  // course
+  ...courseRoutes,
 
   // course -> category routes
   ...categoryRoutes,

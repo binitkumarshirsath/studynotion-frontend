@@ -25,10 +25,12 @@ const CourseInfoForm = () => {
 
   const [categories, setCategories] = useState([]);
 
+  const [thumbnail, setThumbnail] = useState(null);
   // thumbnail preview ke liye
   const [preview, setPreview] = useState(null);
 
   const handleThumbnailChange = (file) => {
+    setThumbnail(file);
     const reader = new FileReader();
     reader.onload = () => {
       setPreview(reader.result);
@@ -51,7 +53,18 @@ const CourseInfoForm = () => {
 
   const onSubmit = (data) => {
     try {
-      dispatch(createCourse(data));
+      const formdata = new FormData();
+      formdata.append("courseName", data.courseName);
+      formdata.append("courseDescription", data.courseDescription);
+      formdata.append("price", data.price);
+      formdata.append("category", data.category);
+      formdata.append("tags", data.tags);
+      formdata.append("thumbnail", thumbnail);
+      formdata.append("whatYouWillLearn", data.whatYouWillLearn);
+      formdata.append("courseRequirement", data.courseRequirement);
+
+      console.log(formdata);
+      dispatch(createCourse(formdata));
     } catch (error) {
       toast.error("Error while creating course");
     }
@@ -64,7 +77,7 @@ const CourseInfoForm = () => {
           register={register}
           errors={errors}
           label="Course title"
-          name="courseTitle"
+          name="courseName"
           placeholder="Enter Course Title"
           validationSchema={{
             required: "Course Title is required",
@@ -122,14 +135,19 @@ const CourseInfoForm = () => {
             Course Category <sup className="text-red-500">*</sup>
           </label>
           <select
-            {...register("courseCategory", {
+            {...register("category", {
               required: "Course category is required",
             })}
             className="text-richblack-25 w-full mt-3 font-montserrat px-2 rounded-md bg-richblack-700 shadow-sm mb-4 shadow-richblack-200 py-2"
           >
             <option value="">Choose course Category</option>
             {categories?.map((item, index) => {
-              return <option key={index}>{item.name}</option>;
+              // console.log(item);
+              return (
+                <option key={index} value={item._id}>
+                  {item.name}
+                </option>
+              );
             })}
           </select>
 
@@ -145,7 +163,7 @@ const CourseInfoForm = () => {
           errors={errors}
           label="Course Tag"
           setValue={setValue}
-          name="courseTag"
+          name="tags"
         />
         {/* thumbnail */}
         <Upload
@@ -158,7 +176,7 @@ const CourseInfoForm = () => {
           }}
           errors={errors}
           label="Course Thumbnail"
-          name="coursethumbnail"
+          name="thumbnail"
           type="image"
         />
         {/* benefits of course */}
@@ -168,22 +186,22 @@ const CourseInfoForm = () => {
             Benefits Of course"
             className="text-white mb-2  font-semibold"
           >
-            Benefits of course <sup className="text-red-500">*</sup>
+            What you will learn <sup className="text-red-500">*</sup>
           </label>
           <textarea
-            name="benefitsOfCourse"
+            name="whatYouWillLearn"
             id="benefitsofCourse"
             cols="30"
             rows="7"
-            placeholder="Benefits of course"
-            {...register("benefitsOfCourse", {
-              required: "Benefits of course is required",
+            placeholder="whatYouWillLearn"
+            {...register("whatYouWillLearn", {
+              required: "whatYouWillLearn  is required",
             })}
             className=" text-richblack-25 mt-3 w-full font-montserrat px-2 rounded-md bg-richblack-700 shadow-sm shadow-richblack-200 py-2"
           ></textarea>
-          {errors && errors.benefitsOfCourse && (
+          {errors && errors.whatYouWillLearn && (
             <span className="error translate-y-1  text-red-500">
-              {errors.benefitsOfCourse?.message}
+              {errors.whatYouWillLearn?.message}
             </span>
           )}
         </div>
@@ -194,7 +212,7 @@ const CourseInfoForm = () => {
             errors={errors}
             label="Course Requirement/Instruction"
             setValue={setValue}
-            name="courseRequirment"
+            name="courseRequirement"
           />
         </div>
         <div className="relative my-4">

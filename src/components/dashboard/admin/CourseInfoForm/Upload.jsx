@@ -1,6 +1,8 @@
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import PropTypes from "prop-types";
 
+// e.target.files[0] is somthing we pass to form data for uploading
+
 const Upload = ({
   label,
   name,

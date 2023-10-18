@@ -56,7 +56,7 @@ const Labels = ({ name, label, register, errors, setValue }) => {
         className={`text-richblack-25 w-full pl-3  font-montserratpx-2 rounded-md bg-richblack-700 shadow-sm shadow-richblack-200 py-2`}
       />
       {errors[name] && (
-        <span className="text-xs text-pink-200">Tags are required</span>
+        <span className="text-xs text-pink-200">{name} are required</span>
       )}
     </div>
   );
