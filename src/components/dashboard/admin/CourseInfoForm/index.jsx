@@ -28,7 +28,6 @@ const CourseInfoForm = () => {
       setPreview(reader.result);
     };
     reader.readAsDataURL(file);
-    console.log(preview);
   };
 
   const [tag, setTag] = useState("");

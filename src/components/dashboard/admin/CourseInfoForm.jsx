@@ -10,18 +10,22 @@ import { GrNext } from "react-icons/gr";
 import Upload from "src/components/dashboard/admin/CourseInfoForm/Upload";
 
 import Labels from "./CourseInfoForm/Labels";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createCourse } from "src/api/operations/courseApi";
+import { setStep } from "src/store/slices/courseSlice";
 
 const CourseInfoForm = () => {
   const {
     register,
     formState: { errors },
     setValue,
+    getValues,
     handleSubmit,
   } = useForm();
 
   const dispatch = useDispatch();
+
+  const { course, editCourse } = useSelector((state) => state.courseReducer);
 
   const [categories, setCategories] = useState([]);
 
@@ -48,6 +52,18 @@ const CourseInfoForm = () => {
         toast.error("Error while fetching categories");
       }
     };
+
+    if (editCourse) {
+      setValue("courseName", course.courseName);
+      setValue("courseDescription", course.courseDescription);
+      setValue("price", course.price);
+      setValue("category", course.category);
+      setValue("tags", course.tags);
+      setValue("thumbnail", course.thumbnail);
+      setValue("whatYouWillLearn", course.whatYouWillLearn);
+      setValue("courseRequirement", course.courseRequirement);
+    }
+
     getAllCategories();
   }, []);
 
@@ -63,7 +79,6 @@ const CourseInfoForm = () => {
       formdata.append("whatYouWillLearn", data.whatYouWillLearn);
       formdata.append("courseRequirement", data.courseRequirement);
 
-      console.log(formdata);
       dispatch(createCourse(formdata));
     } catch (error) {
       toast.error("Error while creating course");
@@ -220,6 +235,7 @@ const CourseInfoForm = () => {
           <button
             className="flex gap-2 top-0 translate-y-4 bg-yellow-50 border border-yellow-5 px-2 py-2 rounded-md text-richblack-800 font-bold absolute items-center right-0 "
             onClick={handleSubmit(onSubmit)}
+            // onClick={() => dispatch(setStep({ step: 2 }))}
           >
             NEXT{" "}
             <GrNext

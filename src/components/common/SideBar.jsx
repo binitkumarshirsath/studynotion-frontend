@@ -40,11 +40,11 @@ const SideBar = () => {
       />
       {/* Logut --> Modal */}
       <div
-        className={`text-richblack-25 font-inter flex  py-2 gap-2 pl-5 items-center`}
+        className={`text-richblack-25 font-inter flex  py-2 gap-2 pl-8 items-center`}
         onClick={() => setIsOpen(true)}
       >
         <div>
-          <FiLogOut />
+          <FiLogOut size={22} />
         </div>
         <div>Logout</div>
       </div>
