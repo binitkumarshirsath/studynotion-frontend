@@ -12,14 +12,12 @@ import Upload from "src/components/dashboard/admin/CourseInfoForm/Upload";
 import Labels from "./CourseInfoForm/Labels";
 import { useDispatch, useSelector } from "react-redux";
 import { createCourse } from "src/api/operations/courseApi";
-import { setStep } from "src/store/slices/courseSlice";
 
 const CourseInfoForm = () => {
   const {
     register,
     formState: { errors },
     setValue,
-    getValues,
     handleSubmit,
   } = useForm();
 

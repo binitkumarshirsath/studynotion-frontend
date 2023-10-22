@@ -28,6 +28,10 @@ const contactUs = {
 // course routes
 const courseRoutes = {
   createCourse: "/course/create-course",
+  updateCourse: "/course/update-course",
+
+  createSection: "/course/create-section",
+  updateSection: "/course/update-section",
 };
 
 export const apiRoutes = {
