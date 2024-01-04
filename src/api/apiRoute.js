@@ -32,6 +32,7 @@ const courseRoutes = {
 
   createSection: "/course/create-section",
   updateSection: "/course/update-section",
+  deleteSection: "/course/delete-section",
 };
 
 export const apiRoutes = {

@@ -51,8 +51,8 @@ const CourseBuilderForm = () => {
       result = await updateSection({
         sectionName: data.sectionName,
         sectionId: editSection,
+        course: course?._id,
       });
-      console.log(result);
     } else {
       result = await createSection({
         sectionName: data.sectionName,
@@ -65,9 +65,8 @@ const CourseBuilderForm = () => {
       });
       setEditSection(null);
       setValue("sectionName", "");
-
-      toast.dismiss(loading);
     }
+    toast.dismiss(loading);
   };
 
   const handleEditSectionName = (sectionId, sectionName) => {
@@ -75,7 +74,6 @@ const CourseBuilderForm = () => {
       handleCancel();
       return;
     }
-
     setEditSection(sectionId);
     setValue("sectionName", sectionName);
   };
@@ -108,10 +106,13 @@ const CourseBuilderForm = () => {
           )}
           {/* submit /edit and cancel btn */}
           <div className=" flex items-center gap-5 ">
-            <div className="flex gap-3 items-center font-mono font-bold  border-2 border-yellow-50 justify-start    rounded-md py-2 px-2 mt-5  text-yellow-50 cursor-pointer">
-              {editSection ? "Edit Section" : "Create Section"}{" "}
+            <button
+              type="submit"
+              className="flex gap-3  items-center font-mono font-bold  border-2 border-yellow-50 justify-start    rounded-md py-2 px-3 mt-5  text-yellow-50 cursor-pointer"
+            >
+              {editSection ? "Edit Section" : "Create Section"}
               {editSection ? <AiFillEdit /> : <AiFillPlusCircle />}
-            </div>
+            </button>
             {editSection && (
               <div
                 onClick={handleCancel}
@@ -124,7 +125,7 @@ const CourseBuilderForm = () => {
         </form>
 
         {/* Nested view */}
-        <div className="mt-6">
+        <div className="mt-6 w-full">
           <NestedView handleEditSectionName={handleEditSectionName} />
         </div>
 
