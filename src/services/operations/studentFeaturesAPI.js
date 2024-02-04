@@ -69,7 +69,7 @@ export async function BuyCourse(
     const key = import.meta.env.VITE_RAZORPAY_KEY_ID;
 
     const options = {
-      key,
+      key: `${key}`,
       currency: orderResponse.data.data.currency,
       amount: `${orderResponse.data.data.amount}`,
       order_id: orderResponse.data.id,
