@@ -27,11 +27,8 @@ const ContactUsForm = () => {
   }, [reset, isSubmitSuccessful]);
 
   const onSubmit = async (data) => {
-    console.log(data);
     try {
       setloading(true);
-      const phoneNo = data.countryCode + "  " + data.phoneNo;
-      const { firstName, lastName, email, message } = data;
 
       const res = await apiConnector(
         "POST",
