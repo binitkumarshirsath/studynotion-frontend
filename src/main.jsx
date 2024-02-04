@@ -1,25 +1,25 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
-import "./index.css";
-
-import { Toaster } from "react-hot-toast";
 import { BrowserRouter } from "react-router-dom";
+import App from "./App";
+import "./index.css";
 import { Provider } from "react-redux";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import store from "src/store/store.js";
+import rootReducer from "./reducers";
+import { configureStore } from "@reduxjs/toolkit";
+import { Toaster } from "react-hot-toast";
 
-const queryClient = new QueryClient();
+const store = configureStore({
+  reducer: rootReducer,
+});
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <Provider store={store}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <App />
         <Toaster />
-      </Provider>
-    </QueryClientProvider>
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );
