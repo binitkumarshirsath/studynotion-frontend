@@ -1,34 +1,31 @@
-import { useEffect, useState } from "react"
-import ProgressBar from "@ramonak/react-progress-bar"
+import { useEffect, useState } from "react";
+import ProgressBar from "@ramonak/react-progress-bar";
 // import { BiDotsVerticalRounded } from "react-icons/bi"
-import { useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-import { getUserEnrolledCourses } from "../../../services/operations/profileAPI"
+import { getUserEnrolledCourses } from "../../../services/operations/profileAPI";
 
 export default function EnrolledCourses() {
-  const { token } = useSelector((state) => state.auth)
-  const navigate = useNavigate()
+  const { token } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
 
-  const [enrolledCourses, setEnrolledCourses] = useState(null)
+  const [enrolledCourses, setEnrolledCourses] = useState(null);
   const getEnrolledCourses = async () => {
     try {
       const res = await getUserEnrolledCourses(token);
 
       setEnrolledCourses(res);
     } catch (error) {
-      console.log("Could not fetch enrolled courses.")
-      
+      console.error("Could not fetch enrolled courses.");
     }
   };
   useEffect(() => {
     getEnrolledCourses();
-  }, [])
-  console.log("enrolled courses",enrolledCourses);
+  }, []);
 
   return (
     <div className="max-w-[75%] mx-auto">
-    
       <div className="text-3xl text-richblack-50">Enrolled Courses</div>
       {!enrolledCourses ? (
         <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center">
@@ -51,7 +48,7 @@ export default function EnrolledCourses() {
           {enrolledCourses.map((course, i, arr) => (
             <div
               className={`flex items-center border border-richblack-700 gap-x-64 ${
-                i === arr.length - 1 ? "rounded-b-lg" : "rounded-none" 
+                i === arr.length - 1 ? "rounded-b-lg" : "rounded-none"
               }`}
               key={i}
             >
@@ -60,7 +57,7 @@ export default function EnrolledCourses() {
                 onClick={() => {
                   navigate(
                     `/view-course/${course?._id}/section/${course.courseContent?.[0]?._id}/sub-section/${course.courseContent?.[0]?.subSection?.[0]._id}`
-                  )
+                  );
                 }}
               >
                 <img
@@ -91,5 +88,5 @@ export default function EnrolledCourses() {
         </div>
       )}
     </div>
-  )
+  );
 }

@@ -1,69 +1,67 @@
-import { useEffect, useRef, useState } from "react"
-import { FiUpload } from "react-icons/fi"
-import { useDispatch, useSelector } from "react-redux"
-import { updateDisplayPicture } from "../../../../services/operations/SettingsAPI"
+import { useEffect, useRef, useState } from "react";
+import { FiUpload } from "react-icons/fi";
+import { useDispatch, useSelector } from "react-redux";
+import { updateDisplayPicture } from "../../../../services/operations/SettingsAPI";
 
-import IconBtn from "../../../comman/IconBtn"
+import IconBtn from "../../../comman/IconBtn";
 
 export default function ChangeProfilePicture() {
-  const { token } = useSelector((state) => state.auth)
-  
-  const { user } = useSelector((state) => state.profile)
-  
-  const dispatch = useDispatch()
+  const { token } = useSelector((state) => state.auth);
 
-  const [loading, setLoading] = useState(false)
-  const [imageFile, setImageFile] = useState(null)
-  const [previewSource, setPreviewSource] = useState(null)
+  const { user } = useSelector((state) => state.profile);
 
-  const fileInputRef = useRef(null)
+  const dispatch = useDispatch();
+
+  const [loading, setLoading] = useState(false);
+  const [imageFile, setImageFile] = useState(null);
+  const [previewSource, setPreviewSource] = useState(null);
+
+  const fileInputRef = useRef(null);
 
   const handleClick = () => {
-    fileInputRef.current.click()
-  }
+    fileInputRef.current.click();
+  };
 
   const handleFileChange = (e) => {
-
-    console.log("console target", e.target.files);
-    const file = e.target.files[0]
-    console.log("file dikha",file)
+    const file = e.target.files[0];
+  
     if (file) {
-      setImageFile(file)
-      previewFile(file)
+      setImageFile(file);
+      previewFile(file);
     }
-  }
+  };
 
   const previewFile = (file) => {
-    const reader = new FileReader()
-    reader.readAsDataURL(file)
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
     reader.onloadend = () => {
-      setPreviewSource(reader.result)
-    }
-  }
+      setPreviewSource(reader.result);
+    };
+  };
 
   const handleFileUpload = () => {
     try {
-      console.log("uploading...")
-      setLoading(true)
-      const formData = new FormData()
-      console.log("formdata", formData)
+     
+      setLoading(true);
+      const formData = new FormData();
+      
 
-      formData.append("displayPicture", imageFile)
-      console.log("formdata", formData)
+      formData.append("displayPicture", imageFile);
+     
       dispatch(updateDisplayPicture(token, formData)).then(() => {
-        setLoading(false)
-        console.log("hogya bhai api call")
-      })
+        setLoading(false);
+        
+      });
     } catch (error) {
-      console.log("ERROR MESSAGE - ", error.message)
+      console.error("ERROR MESSAGE - ", error.message);
     }
-  }
+  };
 
   useEffect(() => {
     if (imageFile) {
-      previewFile(imageFile)
+      previewFile(imageFile);
     }
-  }, [imageFile])
+  }, [imageFile]);
   return (
     <>
       <div className="flex items-center justify-between rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-12 text-richblack-5 max-w-[75%] mx-auto">
@@ -103,5 +101,5 @@ export default function ChangeProfilePicture() {
         </div>
       </div>
     </>
-  )
+  );
 }

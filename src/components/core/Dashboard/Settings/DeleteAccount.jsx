@@ -13,7 +13,7 @@ export default function DeleteAccount() {
     try {
       dispatch(deleteProfile(token, navigate))
     } catch (error) {
-      console.log("ERROR MESSAGE - ", error.message)
+      console.error("ERROR MESSAGE - ", error.message)
     }
   }
 

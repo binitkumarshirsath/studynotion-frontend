@@ -40,10 +40,10 @@ const ContactUsForm = () => {
       } else {
         toast.error("Something went wrong");
       }
-      console.log("contact response", res);
+
       setloading(false);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

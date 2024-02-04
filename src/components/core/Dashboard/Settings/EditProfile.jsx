@@ -1,33 +1,29 @@
-import { useForm } from "react-hook-form"
-import { useDispatch, useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-import { updateProfile } from "../../../../services/operations/SettingsAPI"
-import IconBtn from "../../../comman/IconBtn"
+import { updateProfile } from "../../../../services/operations/SettingsAPI";
+import IconBtn from "../../../comman/IconBtn";
 
-const genders = ["Male", "Female", "Non-Binary", "Prefer not to say", "Other"]
+const genders = ["Male", "Female", "Non-Binary", "Prefer not to say", "Other"];
 
 export default function EditProfile() {
-  const { user } = useSelector((state) => state.profile)
-  const { token } = useSelector((state) => state.auth)
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
-
+  const { user } = useSelector((state) => state.profile);
+  const { token } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm()
+  } = useForm();
 
   const submitProfileForm = async (data) => {
-    // console.log("Form Data - ", data)
     try {
-      dispatch(updateProfile(token, data))
-    } catch (error) {
-      console.log("ERROR MESSAGE - ", error.message)
-    }
-  }
+      dispatch(updateProfile(token, data));
+    } catch (error) {}
+  };
   return (
     <>
       <form onSubmit={handleSubmit(submitProfileForm)}>
@@ -122,7 +118,7 @@ export default function EditProfile() {
                     <option key={i} value={ele}>
                       {ele}
                     </option>
-                  )
+                  );
                 })}
               </select>
               {errors.gender && (
@@ -185,15 +181,15 @@ export default function EditProfile() {
         <div className="flex justify-end gap-2 mx-40">
           <button
             onClick={() => {
-              navigate("/dashboard/my-profile")
+              navigate("/dashboard/my-profile");
             }}
             className="cursor-pointer rounded-md bg-richblack-700 py-2 px-5 font-semibold text-richblack-50"
           >
             Cancel
           </button>
-          <IconBtn type="submit" text="Save"  />
+          <IconBtn type="submit" text="Save" />
         </div>
       </form>
     </>
-  )
+  );
 }

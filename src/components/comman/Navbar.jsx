@@ -1,50 +1,46 @@
-import { useEffect, useState } from "react"
-import { AiOutlineMenu, AiOutlineShoppingCart } from "react-icons/ai"
-import { BsChevronDown } from "react-icons/bs"
-import { useSelector } from "react-redux"
-import { Link, matchPath, useLocation } from "react-router-dom"
+import { useEffect, useState } from "react";
+import { AiOutlineMenu, AiOutlineShoppingCart } from "react-icons/ai";
+import { BsChevronDown } from "react-icons/bs";
+import { useSelector } from "react-redux";
+import { Link, matchPath, useLocation } from "react-router-dom";
 
-import logo from "../../assets/Logo/Logo-Full-Light.png"
-import { NavbarLinks } from "../../data/navbar-links"
-import { apiConnector } from "../../services/apiconnector"
-import { categories } from "../../services/apis"
-import { ACCOUNT_TYPE } from "../../utils/constants"
-import ProfileDropdown from "../core/Auth/ProfileDropDown"
+import logo from "../../assets/Logo/Logo-Full-Light.png";
+import { NavbarLinks } from "../../data/navbar-links";
+import { apiConnector } from "../../services/apiconnector";
+import { categories } from "../../services/apis";
+import { ACCOUNT_TYPE } from "../../utils/constants";
+import ProfileDropdown from "../core/Auth/ProfileDropDown";
 
 function Navbar() {
-  const { token } = useSelector((state) => state.auth)
-  const { user } = useSelector((state) => state.profile)
-  const { totalItems } = useSelector((state) => state.cart)
-  const location = useLocation()
+  const { token } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.profile);
+  const { totalItems } = useSelector((state) => state.cart);
+  const location = useLocation();
 
-  const [subLinks, setSubLinks] = useState([])
-  const [loading, setLoading] = useState(false)
+  const [subLinks, setSubLinks] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    ;(async () => {
-      setLoading(true)
+    (async () => {
+      setLoading(true);
       try {
-        const res = await apiConnector("GET", categories.CATEGORIES_API)
-        // console.log("response", res);
+        const res = await apiConnector("GET", categories.CATEGORIES_API);
+
         if (res?.data?.data?.length > 0) {
-            setSubLinks(res?.data?.data);
+          setSubLinks(res?.data?.data);
         }
         localStorage.setItem("subLinks", JSON.stringify(res.data.data));
-        console.log("sublinks",subLinks);
-
       } catch (error) {
-        console.log("Could not fetch Categories.", error)
+        console.error("Could not fetch Categories.", error);
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
-    })()
-  }, [])
+    })();
+  }, []);
 
-
-  
   const matchRoute = (route) => {
-    return matchPath({ path: route }, location.pathname)
-  }
+    return matchPath({ path: route }, location.pathname);
+  };
 
   return (
     <div
@@ -79,11 +75,10 @@ function Navbar() {
                           <p className="text-center">Loading...</p>
                         ) : subLinks.length ? (
                           <>
-                            {subLinks?.length < 0 ?(
-                                    <p className="text-center">No Courses Found</p>
-                                  ) :
-                              
-                             ( subLinks?.map((subLink, i) => (
+                            {subLinks?.length < 0 ? (
+                              <p className="text-center">No Courses Found</p>
+                            ) : (
+                              subLinks?.map((subLink, i) => (
                                 <Link
                                   to={`/catalog/${subLink.name
                                     .split(" ")
@@ -94,7 +89,8 @@ function Navbar() {
                                 >
                                   <p>{subLink.name}</p>
                                 </Link>
-                              )))}
+                              ))
+                            )}
                           </>
                         ) : (
                           <p className="text-center">No Courses Found</p>
@@ -152,7 +148,7 @@ function Navbar() {
         </button>
       </div>
     </div>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;
