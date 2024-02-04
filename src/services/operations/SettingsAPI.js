@@ -16,9 +16,6 @@ export function updateDisplayPicture(token, formData) {
   return async (dispatch) => {
     const toastId = toast.loading("Loading...");
     try {
-      console.log("Requesting to update display picture...");
-      console.log("Authorization Header:", `Bearer ${token}`);
-
       const response = await apiConnector(
         "PUT",
         UPDATE_DISPLAY_PICTURE_API,
@@ -29,19 +26,13 @@ export function updateDisplayPicture(token, formData) {
         }
       );
 
-      console.log(
-        "UPDATE_DISPLAY_PICTURE_API API RESPONSE............",
-        response
-      );
-
       if (!response.data.success) {
         console.error("Update failed:", response.data.message);
         throw new Error(response.data.message);
       }
 
-      console.log("Display Picture Updated Successfully");
       toast.success("Display Picture Updated Successfully");
-      console.log("btao bhai response", response.data.data);
+
       dispatch(setUser(response.data.data));
     } catch (error) {
       console.error("UPDATE_DISPLAY_PICTURE_API API ERROR............", error);
@@ -61,8 +52,7 @@ export function updateProfile(token, formData) {
       const response = await apiConnector("PUT", UPDATE_PROFILE_API, formData, {
         Authorization: `Bearer ${token}`,
       });
-      console.log("UPDATE_PROFILE_API API RESPONSE............", response);
-      console.log(response.data.success);
+
       if (!response.data.success) {
         throw new Error(response.data.message);
       }
@@ -81,7 +71,6 @@ export function updateProfile(token, formData) {
 
       localStorage.setItem("user", JSON.stringify(user));
     } catch (error) {
-      console.log("UPDATE_PROFILE_API API ERROR............", error);
       toast.error("Could Not Update Profile");
     }
     toast.dismiss(toastId);
@@ -90,13 +79,12 @@ export function updateProfile(token, formData) {
 
 //updatePassword
 export async function updatePassword(token, password) {
-  console.log(token, password);
   const {
     oldPassword,
     newPassword,
     confirmPassword: confirmNewPassword,
   } = password;
-  console.log("password", password);
+
   const toastId = toast.loading("Updating...");
   try {
     const response = await apiConnector(
@@ -107,14 +95,12 @@ export async function updatePassword(token, password) {
         Authorization: `Bearer ${token}`,
       }
     );
-    console.log(token);
-    console.log("UPDATE_PASSWORD_API API RESPONSE............", response);
+
     if (!response.data.success) {
       throw new Error(response.data.message);
     }
     toast.success("Password Updated Successfully");
   } catch (error) {
-    console.log("UPDATE_PASSWORD_API API ERROR............", error);
     toast.error(error.response.data.message);
   }
   toast.dismiss(toastId);
@@ -127,7 +113,6 @@ export function deleteProfile(token, navigate) {
       const response = await apiConnector("DELETE", DELETE_PROFILE_API, null, {
         Authorization: `Bearer ${token}`,
       });
-      console.log("DELETE_PROFILE_API API RESPONSE............", response);
 
       if (!response.data.success) {
         throw new Error(response.data.message);
@@ -135,7 +120,6 @@ export function deleteProfile(token, navigate) {
       toast.success("Profile Deleted Successfully");
       dispatch(logout(navigate));
     } catch (error) {
-      console.log("DELETE_PROFILE_API API ERROR............", error);
       toast.error("Could Not Delete Profile");
     }
     toast.dismiss(toastId);

@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState } from "react"
-import { useDropzone } from "react-dropzone"
-import { FiUploadCloud } from "react-icons/fi"
-import { useSelector } from "react-redux"
+import { useEffect, useRef, useState } from "react";
+import { useDropzone } from "react-dropzone";
+import { FiUploadCloud } from "react-icons/fi";
+import { useSelector } from "react-redux";
 
-import "video-react/dist/video-react.css"
-import { Player } from "video-react"
+import "video-react/dist/video-react.css";
+import { Player } from "video-react";
 
 export default function Upload({
   name,
@@ -16,46 +16,45 @@ export default function Upload({
   viewData = null,
   editData = null,
 }) {
-  const { course } = useSelector((state) => state.course)
-  const [selectedFile, setSelectedFile] = useState(null)
+  const { course } = useSelector((state) => state.course);
+  const [selectedFile, setSelectedFile] = useState(null);
   const [previewSource, setPreviewSource] = useState(
     viewData ? viewData : editData ? editData : ""
-  )
-  const inputRef = useRef(null)
+  );
+  const inputRef = useRef(null);
 
   const onDrop = (acceptedFiles) => {
-    const file = acceptedFiles[0]
+    const file = acceptedFiles[0];
     if (file) {
-      previewFile(file)
-      setSelectedFile(file)
+      previewFile(file);
+      setSelectedFile(file);
     }
-  }
+  };
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: !video
       ? { "image/*": [".jpeg", ".jpg", ".png"] }
       : { "video/*": [".mp4"] },
     onDrop,
-  })
+  });
 
   const previewFile = (file) => {
-    // console.log(file)
-    const reader = new FileReader()
-    reader.readAsDataURL(file)
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
     reader.onloadend = () => {
-      setPreviewSource(reader.result)
-    }
-  }
+      setPreviewSource(reader.result);
+    };
+  };
 
   useEffect(() => {
-    register(name, { required: true })
+    register(name, { required: true });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [register])
+  }, [register]);
 
   useEffect(() => {
-    setValue(name, selectedFile)
+    setValue(name, selectedFile);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedFile, setValue])
+  }, [selectedFile, setValue]);
 
   return (
     <div className="flex flex-col space-y-2">
@@ -82,9 +81,9 @@ export default function Upload({
               <button
                 type="button"
                 onClick={() => {
-                  setPreviewSource("")
-                  setSelectedFile(null)
-                  setValue(name, null)
+                  setPreviewSource("");
+                  setSelectedFile(null);
+                  setValue(name, null);
                 }}
                 className="mt-3 text-richblack-400 underline"
               >
@@ -119,5 +118,5 @@ export default function Upload({
         </span>
       )}
     </div>
-  )
+  );
 }
