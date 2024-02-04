@@ -1,83 +1,118 @@
 import { Route, Routes } from "react-router-dom";
-import Homepage from "./pages/Homepage";
+import "./App.css";
+import Home from "./pages/Home";
+import Navbar from "./components/comman/Navbar";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import Navbar from "./components/navbar/Navbar";
 import ForgotPassword from "./pages/ForgotPassword";
+import OpenRoute from "./components/core/Auth/OpenRoute";
 import UpdatePassword from "./pages/UpdatePassword";
+import VerifyEmail from "./pages/VerifyEmail";
 import About from "./pages/About";
-import VerifyOTP from "./pages/VerifyOTP";
-import Footer from "src/components/footer/Footer";
-
-import { useSelector } from "react-redux";
 import ContactUs from "./pages/ContactUs";
-import Error from "./pages/Error";
-import OpenRoute from "./utils/OpenRoute";
-import Dashboard from "src/pages/Dashboard/Dashboard";
-import PrivateRoute from "./utils/PrivateRoute";
-import EnrolledCourses from "./components/dashboard/EnrolledCourses";
-import MyProfile from "./components/dashboard/MyProfile";
-import Cart from "./components/dashboard/Cart";
-import Settings from "./components/dashboard/Settings";
-import AddCourse from "./pages/AddCourse";
+import MyProfile from "./components/core/Dashboard/MyProfile";
+import Dashboard from "./pages/Dashboard";
+import PrivateRoute from "./components/core/Auth/PrivateRoute";
+import Settings from "./components/core/Dashboard/Settings";
+import EnrolledCourses from "./components/core/Dashboard/EnrolledCourses";
+import Cart from "./components/core/Dashboard/Cart";
+import { ACCOUNT_TYPE } from "./utils/constants";
+import { useSelector } from "react-redux";
+import AddCourse from "./components/core/Dashboard/AddCourse";
+import MyCourses from "./components/core/Dashboard/MyCourses";
+import EditCourse from "./components/core/Dashboard/EditCourse";
+import Catalog from "./pages/Catalog";
+import CourseDetails from "./pages/CourseDetails";
+import ViewCourse from "./pages/ViewCourse";
+import VideoDetails from "./components/core/ViewCourse/VideoDetails";
+import Instructor from "./components/core/Dashboard/InstructorDashboard/Instructor";
 
-const App = () => {
-  const loading = useSelector((state) => state.authReducer.loading);
-  const profLoading = useSelector((state) => state.profileReducer.loading);
+function App() {
+  const { user } = useSelector((state) => state.profile);
 
   return (
-    <div className="h-full w-full flex flex-col">
+    <div className=" w-screen min-h-screen bg-richblack-900 flex flex-col font-inter">
       <Navbar />
-      {/* loader */}
-      {loading || profLoading ? (
-        <div className="bg-richblack-700 h-[calc(100vh-56px)] flex justify-center items-center">
-          <div className="custom-loader h-full"></div>
-        </div>
-      ) : (
-        <Routes>
-          {/* Home page route accessible to everyon */}
-          <Route path="/" element={<Homepage />} />
-          {/* Open routes, Available to users  who arent logged in
-          so once user is logged in , user cant access these */}
-          <Route element={<OpenRoute />}>
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="catalog/:catalogName" element={<Catalog />} />
+        <Route path="courses/:courseId" element={<CourseDetails />} />
 
-            {/* Reset password flow , accessible to users who arent logged in */}
-            <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route path="/verify-otp" element={<VerifyOTP />} />
-            <Route path="/reset-password/:id" element={<UpdatePassword />} />
-          </Route>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route
+          path="update-password/:id"
+          element={
+            <OpenRoute>
+              <UpdatePassword />
+            </OpenRoute>
+          }
+        />
+        <Route
+          path="verify-email"
+          element={
+            <OpenRoute>
+              <VerifyEmail />
+            </OpenRoute>
+          }
+        />
+        <Route path="/about" element={<About />} />
 
-          <Route
-            element={
-              // PR checks if user is authenticed and returns *children*
-              // which is dashboard here
-              <PrivateRoute>
-                {/* Dashboard on the other hand returns outlet */}
-                <Dashboard />
-              </PrivateRoute>
-            }
-          >
-            {/* as dashboard returned outlet , ye wala route will render */}
-            <Route path="dashboard/my-profile" element={<MyProfile />} />
-            <Route
-              path="dashboard/enrolled-courses"
-              element={<EnrolledCourses />}
-            />
-            <Route path="dashboard/cart" element={<Cart />} />
-            <Route path="dashboard/settings" element={<Settings />} />
-            <Route path="dashboard/add-course" element={<AddCourse />} />
-          </Route>
+        <Route path="/contact" element={<ContactUs />} />
 
-          <Route path="/about" element={<About />} />
-          <Route path="/contact-us" element={<ContactUs />} />
-          <Route path="*" element={<Error />} />
-        </Routes>
-      )}
-      <Footer />
+        <Route
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        >
+          <Route path="dashboard/my-profile" element={<MyProfile />} />
+          <Route path="dashboard/settings" element={<Settings />} />
+
+          {user?.accountType === ACCOUNT_TYPE.STUDENT && (
+            <>
+              <Route path="dashboard/cart" element={<Cart />} />
+              <Route
+                path="dashboard/enrolled-courses"
+                element={<EnrolledCourses />}
+              />
+            </>
+          )}
+
+          {user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
+            <>
+              <Route path="dashboard/instructor" element={<Instructor />} />
+              <Route path="dashboard/add-course" element={<AddCourse />} />
+              <Route path="dashboard/my-courses" element={<MyCourses />} />
+              <Route
+                path="dashboard/edit-course/:courseId"
+                element={<EditCourse />}
+              />
+            </>
+          )}
+        </Route>
+
+        <Route
+          element={
+            <PrivateRoute>
+              <ViewCourse />
+            </PrivateRoute>
+          }
+        >
+          {user?.accountType === ACCOUNT_TYPE.STUDENT && (
+            <>
+              <Route
+                path="view-course/:courseId/section/:sectionId/sub-section/:subSectionId"
+                element={<VideoDetails />}
+              />
+            </>
+          )}
+        </Route>
+      </Routes>
     </div>
   );
-};
+}
 
 export default App;
