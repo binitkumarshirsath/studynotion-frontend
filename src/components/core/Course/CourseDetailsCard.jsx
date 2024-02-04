@@ -95,6 +95,7 @@ function CourseDetailsCard({ course, setConfirmationModal, handleBuyCourse }) {
                 return (
                   <p className={`flex gap-2`} key={i}>
                     <BsFillCaretRightFill />
+
                     <span>{item}</span>
                   </p>
                 );
