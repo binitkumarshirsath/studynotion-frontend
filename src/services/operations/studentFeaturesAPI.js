@@ -64,12 +64,12 @@ export async function BuyCourse(
     if (!orderResponse.data.success) {
       throw new Error(orderResponse.data.message);
     }
-    console.log("PAYMENT RESPONSE FROM BACKEND............", orderResponse);
 
     // Opening the Razorpay SDK
     //home
+
     const options = {
-      key: "rzp_test_Qj49i1s7QprKNo",
+      key: `${import.meta.env.VITE_RAZORPAY_KEY_ID}`,
       currency: orderResponse.data.data.currency,
       amount: `${orderResponse.data.data.amount}`,
       order_id: orderResponse.data.data.id,
@@ -89,15 +89,15 @@ export async function BuyCourse(
         verifyPayment({ ...response, courses }, token, navigate, dispatch);
       },
     };
+
     const paymentObject = new window.Razorpay(options);
 
     paymentObject.open();
+
     paymentObject.on("payment.failed", function (response) {
       toast.error("Oops! Payment Failed.");
-      console.log(response.error);
     });
   } catch (error) {
-    console.log("PAYMENT API ERROR............", error);
     toast.error("Could Not make Payment.");
   }
   toast.dismiss(toastId);
@@ -106,13 +106,12 @@ export async function BuyCourse(
 // Verify the Payment
 async function verifyPayment(bodyData, token, navigate, dispatch) {
   const toastId = toast.loading("Verifying Payment...");
+
   dispatch(setPaymentLoading(true));
   try {
     const response = await apiConnector("POST", COURSE_VERIFY_API, bodyData, {
       Authorization: `Bearer ${token}`,
     });
-
-    console.log("VERIFY PAYMENT RESPONSE FROM BACKEND............", response);
 
     if (!response.data.success) {
       throw new Error(response.data.message);
